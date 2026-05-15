@@ -551,4 +551,10 @@ input:focus {
     width: 100%;
   }
 }
+.doc-date {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 700;
+}
 

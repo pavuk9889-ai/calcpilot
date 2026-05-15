@@ -684,3 +684,52 @@ select:focus {
   font-size: 14px;
 }
 
+.compact-docs {
+  display: grid;
+  gap: 14px;
+}
+
+.compact-docs details {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+}
+
+.compact-docs summary {
+  cursor: pointer;
+  padding: 18px 22px;
+  font-weight: 800;
+  color: #111827;
+  list-style: none;
+  position: relative;
+}
+
+.compact-docs summary::-webkit-details-marker {
+  display: none;
+}
+
+.compact-docs summary::after {
+  content: "+";
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #2563eb;
+}
+
+.compact-docs details[open] summary::after {
+  content: "−";
+}
+
+.compact-docs .legal-text {
+  margin-top: 0;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  box-shadow: none;
+}
+

@@ -50,7 +50,7 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v0.5.2</div>
+          <div class="badge">MVP-версия v0.6</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
@@ -73,7 +73,7 @@
 
           <div class="mini-stats">
             <div>
-              <strong>3</strong>
+              <strong>4</strong>
               <span>калькулятора</span>
             </div>
             <div>
@@ -94,16 +94,17 @@
         <div class="section-head">
           <h2>Калькуляторы</h2>
           <p>
-            Первые инструменты CalcPilot: кредитный калькулятор, расчёт накоплений
-            и личный бюджет. Они помогают быстро получить ориентир по деньгам.
+            Первые инструменты CalcPilot: кредитный калькулятор, расчёт накоплений,
+личный бюджет и финансовая подушка. Они помогают быстро получить ориентир по деньгам.
           </p>
         </div>
 
-        <div class="tabs">
-          <button class="tab active" data-tab="credit">Кредит</button>
-          <button class="tab" data-tab="savings">Накопления</button>
-          <button class="tab" data-tab="budget">Бюджет</button>
-        </div>
+       <div class="tabs">
+  <button class="tab active" data-tab="credit">Кредит</button>
+  <button class="tab" data-tab="savings">Накопления</button>
+  <button class="tab" data-tab="budget">Бюджет</button>
+  <button class="tab" data-tab="cushion">Финансовая подушка</button>
+</div>
 
         <div class="calculator active" id="credit">
           <div class="calc-grid">
@@ -237,6 +238,63 @@
               </div>
 
               <p class="hint" id="budgetHint">
+                Нажмите «Рассчитать», чтобы увидеть результат.
+              </p>
+            </div>
+          </div>
+        </div>
+                <div class="calculator" id="cushion">
+          <div class="calc-grid">
+            <div class="calc-form">
+              <h3>Калькулятор финансовой подушки</h3>
+
+              <label>
+                Ежемесячные расходы, ₽
+                <input type="number" id="cushionExpenses" value="60000" />
+              </label>
+
+              <label>
+                На сколько месяцев нужна подушка
+                <input type="number" id="cushionMonths" value="6" />
+              </label>
+
+              <label>
+                Уже накоплено, ₽
+                <input type="number" id="cushionCurrent" value="50000" />
+              </label>
+
+              <label>
+                Ежемесячно откладывать, ₽
+                <input type="number" id="cushionMonthly" value="20000" />
+              </label>
+
+              <button class="btn primary full" onclick="calculateCushion()">Рассчитать</button>
+            </div>
+
+            <div class="result-card">
+              <h3>Результат</h3>
+              <p>Рекомендуемый размер подушки:</p>
+
+              <div class="big-result" id="cushionTarget">—</div>
+
+              <div class="result-list">
+                <div>
+                  <span>Нужно накопить ещё</span>
+                  <strong id="cushionLeft">—</strong>
+                </div>
+
+                <div>
+                  <span>Срок достижения</span>
+                  <strong id="cushionTime">—</strong>
+                </div>
+
+                <div>
+                  <span>Готовность подушки</span>
+                  <strong id="cushionProgress">—</strong>
+                </div>
+              </div>
+
+              <p class="hint" id="cushionHint">
                 Нажмите «Рассчитать», чтобы увидеть результат.
               </p>
             </div>
@@ -549,8 +607,8 @@
           <h2>CalcPilot — онлайн-калькуляторы для жизни</h2>
           <p>
             CalcPilot — это развивающийся сервис онлайн-калькуляторов, который помогает
-            быстро считать важные бытовые и финансовые показатели. Сейчас доступны
-            кредитный калькулятор онлайн, расчёт накоплений и калькулятор личного бюджета.
+            быстро считать важные бытовые и финансовые показатели.
+            Сейчас доступны кредитный калькулятор онлайн, расчёт накоплений, калькулятор личного бюджета и калькулятор финансовой подушки.
             С помощью кредитного калькулятора можно предварительно рассчитать платёж
             по кредиту, общую сумму выплат и примерную переплату.
           </p>
@@ -793,7 +851,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v0.5.2</span>
+    <span>© 2026 CalcPilot · v0.6</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

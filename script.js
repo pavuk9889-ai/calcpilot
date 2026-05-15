@@ -203,6 +203,60 @@ function calculateEarlyRepayment(trackGoal = true) {
     sendGoal("early_repayment_calculate");
   }
 }
+/* Ипотечный калькулятор */
+function calculateMortgage(trackGoal = true) {
+  const price = getNumber("mortgagePrice");
+  const down = getNumber("mortgageDown");
+  const annualRate = getNumber("mortgageRate");
+  const years = getNumber("mortgageYears");
+  const income = getNumber("mortgageIncome");
+
+  if (price <= 0 || down < 0 || annualRate < 0 || years <= 0) {
+    alert("Проверьте данные: стоимость жилья и срок должны быть больше нуля, взнос не может быть отрицательным.");
+    return;
+  }
+
+  if (down >= price) {
+    alert("Первоначальный взнос не должен быть равен или больше стоимости жилья.");
+    return;
+  }
+
+  const loan = price - down;
+  const months = years * 12;
+
+  const payment = getAnnuityPayment(loan, annualRate, months);
+  const total = payment * months;
+  const overpay = total - loan;
+
+  const load = income > 0 ? payment / income * 100 : 0;
+  const downPercent = down / price * 100;
+
+  setText("mortgagePayment", formatRub(payment));
+  setText("mortgageLoan", formatRub(loan));
+  setText("mortgageTotal", formatRub(total));
+  setText("mortgageOverpay", formatRub(overpay));
+  setText("mortgageLoad", income > 0 ? `${load.toFixed(1)}%` : "—");
+
+  let hint = "";
+
+  if (income <= 0) {
+    hint = "Расчёт выполнен без оценки нагрузки на доход. Чтобы понять комфортность платежа, укажите ежемесячный доход семьи.";
+  } else if (load > 50) {
+    hint = "Платёж занимает больше половины дохода. Такая нагрузка выглядит высокой. Стоит рассмотреть больший первоначальный взнос, меньшую сумму кредита или другой срок.";
+  } else if (load > 35) {
+    hint = "Нагрузка на доход заметная. Перед оформлением ипотеки важно оставить запас на жизнь, ремонт, страховки и непредвиденные расходы.";
+  } else if (downPercent < 15) {
+    hint = "Платёж выглядит умеренным, но первоначальный взнос ниже 15%. Проверьте требования банков и возможные дополнительные условия.";
+  } else {
+    hint = "Нагрузка выглядит относительно комфортной, но расчёт примерный. Реальные условия банка могут отличаться из-за страховок, комиссий и требований к заёмщику.";
+  }
+
+  setText("mortgageHint", hint);
+
+  if (trackGoal) {
+    sendGoal("mortgage_calculate");
+  }
+}
 
 /* Калькулятор накоплений */
 function calculateSavings(trackGoal = true) {
@@ -366,8 +420,12 @@ function addMessage(text, type) {
 
 function generateAssistantAnswer(question) {
   const q = question.toLowerCase();
+  
   if (q.includes("досроч") || q.includes("погаш")) {
   return "При досрочном погашении обычно сравнивают два варианта: уменьшить ежемесячный платёж или сократить срок кредита. Уменьшение срока чаще даёт большую экономию на процентах, а уменьшение платежа снижает нагрузку на бюджет.";
+}
+  if (text.includes("ипотек")) {
+  return "Ипотечный калькулятор поможет оценить примерный ежемесячный платёж, сумму кредита, переплату и нагрузку на доход. Для расчёта укажите стоимость жилья, первоначальный взнос, ставку, срок и доход семьи.";
 }
 
   if (q.includes("кредит") || q.includes("ипотек") || q.includes("платёж") || q.includes("платеж")) {
@@ -430,6 +488,7 @@ function initCookieBanner() {
 /* Делаем функции доступными для кнопок onclick */
 window.calculateCredit = calculateCredit;
 window.calculateEarlyRepayment = calculateEarlyRepayment;
+window.calculateMortgage = calculateMortgage;
 window.calculateSavings = calculateSavings;
 window.calculateBudget = calculateBudget;
 window.calculateCushion = calculateCushion;
@@ -440,6 +499,7 @@ window.acceptCookies = acceptCookies;
 try {
   calculateCredit(false);
 calculateEarlyRepayment(false);
+calculateMortgage(false);
 calculateSavings(false);
 calculateBudget(false);
 calculateCushion(false);

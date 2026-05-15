@@ -170,7 +170,47 @@ function calculateBudget(trackGoal = true) {
   if (trackGoal) {
   sendGoal("budget_calculate");
 }
+function calculateCushion(trackGoal = true) {
+  const expenses = getNumber("cushionExpenses");
+  const months = getNumber("cushionMonths");
+  const current = getNumber("cushionCurrent");
+  const monthly = getNumber("cushionMonthly");
 
+  if (expenses <= 0 || months <= 0 || current < 0 || monthly <= 0) {
+    alert("Проверьте данные: расходы, срок подушки и ежемесячное пополнение должны быть больше нуля.");
+    return;
+  }
+
+  const target = expenses * months;
+  const left = Math.max(target - current, 0);
+  const time = left === 0 ? 0 : Math.ceil(left / monthly);
+  const progress = target > 0 ? Math.min((current / target) * 100, 100) : 0;
+
+  document.getElementById("cushionTarget").textContent = formatRub(target);
+  document.getElementById("cushionLeft").textContent = formatRub(left);
+  document.getElementById("cushionTime").textContent =
+    time === 0 ? "уже готова" : `${time} мес.`;
+  document.getElementById("cushionProgress").textContent =
+    `${progress.toFixed(1)}%`;
+
+  let hint = "";
+
+  if (progress >= 100) {
+    hint = "Отлично! Финансовая подушка уже сформирована. Важно хранить её в доступном и надёжном инструменте.";
+  } else if (progress >= 70) {
+    hint = "Подушка почти готова. Осталось немного до рекомендуемого уровня.";
+  } else if (progress >= 30) {
+    hint = "Хорошее начало. Продолжайте регулярно откладывать, чтобы выйти на безопасный уровень.";
+  } else {
+    hint = "Финансовая подушка пока небольшая. Начните с цели хотя бы на 1–3 месяца расходов.";
+  }
+
+  document.getElementById("cushionHint").textContent = hint;
+
+  if (trackGoal) {
+    sendGoal("cushion_calculate");
+  }
+}
 }
 
 function askAssistant() {
@@ -226,6 +266,7 @@ function generateAssistantAnswer(question) {
 calculateCredit(false);
 calculateSavings(false);
 calculateBudget(false);
+calculateCushion(false);
 
 function acceptCookies() {
   const banner = document.getElementById("cookieBanner");

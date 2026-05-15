@@ -558,3 +558,58 @@ input:focus {
   font-weight: 700;
 }
 
+/* Единые интервалы для текстовых блоков и карточек */
+.section {
+  padding: 64px 0;
+}
+
+.section-head {
+  margin-bottom: 30px;
+}
+
+.section-head h2 {
+  line-height: 1.15;
+}
+
+.section-head p {
+  max-width: 920px;
+  margin-top: 12px;
+  line-height: 1.65;
+}
+
+.cards {
+  align-items: stretch;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.info-card h3 {
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.info-card p {
+  margin: 0 0 18px;
+  line-height: 1.65;
+}
+
+.info-card .btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* Единый ритм для SEO/FAQ/информационных текстов под калькуляторами */
+.section .container > h3 {
+  margin: 28px 0 10px;
+  line-height: 1.25;
+}
+
+.section .container > p {
+  margin: 0 0 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}

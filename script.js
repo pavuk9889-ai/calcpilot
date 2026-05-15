@@ -323,16 +323,30 @@ function calculateDeposit(trackGoal = true) {
   let totalInterest = 0;
 
   if (capitalization === "monthly") {
+    // Ежемесячная капитализация:
+    // сначала начисляем проценты на текущий баланс,
+    // затем добавляем ежемесячное пополнение.
     for (let i = 0; i < months; i++) {
-      balance += monthly;
       const interest = balance * monthlyRate;
       balance += interest;
       totalInterest += interest;
+
+      balance += monthly;
     }
   } else {
-    const ownMoney = start + monthly * months;
-    totalInterest = ownMoney * (annualRate / 100) * (months / 12);
-    balance = ownMoney + totalInterest;
+    // Без капитализации:
+    // проценты начисляются на текущую сумму вклада,
+    // но сами проценты не начинают приносить новые проценты.
+    let principalBalance = start;
+
+    for (let i = 0; i < months; i++) {
+      const interest = principalBalance * monthlyRate;
+      totalInterest += interest;
+
+      principalBalance += monthly;
+    }
+
+    balance = principalBalance + totalInterest;
   }
 
   const contributions = monthly * months;
@@ -352,9 +366,9 @@ function calculateDeposit(trackGoal = true) {
   } else if (yieldRate >= 20) {
     hint = "За счёт срока, ставки и пополнений вклад даёт заметный процентный доход. Не забудьте проверить условия досрочного снятия.";
   } else if (monthly > 0) {
-    hint = "Регулярные пополнения помогают заметно увеличить итоговую сумму даже при умеренной ставке.";
+    hint = "Регулярные пополнения помогают увеличить итоговую сумму даже при умеренной ставке.";
   } else {
-    hint = "Расчёт показывает примерный доход по вкладу. Для точного результата проверьте условия капитализации и выплаты процентов в банке.";
+    hint = "Расчёт показывает примерный доход по вкладу. Для точного результата проверьте условия капитализации, пополнения и выплаты процентов в банке.";
   }
 
   setText("depositHint", hint);

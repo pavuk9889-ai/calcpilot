@@ -51,13 +51,13 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v0.8.3</div>
+          <div class="badge">MVP-версия v0.9</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
           <p>
             CalcPilot помогает быстро оценить кредит, досрочное погашение,
-накопления, личный бюджет и финансовую подушку, чтобы принимать
+ипотеку, накопления, личный бюджет и финансовую подушку, чтобы принимать
 решения спокойнее, понятнее и без сложных таблиц.
           </p>
 
@@ -75,7 +75,7 @@
 
           <div class="mini-stats">
             <div>
-              <strong>5</strong>
+              <strong>6</strong>
               <span>калькуляторов</span>
             </div>
             <div>
@@ -120,6 +120,18 @@
   <a href="#calculators" class="btn secondary"
      onclick="sendGoal('scenario_early_click'); document.querySelector('[data-tab=early]').click()">Рассчитать досрочное погашение</a>
 </div>
+          <div class="info-card">
+  <h3>Планирую ипотеку</h3>
+  <p>
+    Оцените примерный ежемесячный платёж по ипотеке, сумму кредита,
+    переплату и нагрузку на доход. Это поможет заранее понять,
+    насколько комфортным будет платёж.
+  </p>
+  <a href="#calculators" class="btn secondary"
+     onclick="sendGoal('scenario_mortgage_click'); document.querySelector('[data-tab=mortgage]').click()">
+    Рассчитать ипотеку
+  </a>
+</div>
 
           <div class="info-card">
             <h3>Хочу накопить на цель</h3>
@@ -163,13 +175,14 @@
           <h2>Калькуляторы</h2>
           <p>
             Первые инструменты CalcPilot: кредитный калькулятор, досрочное погашение,
-расчёт накоплений, личный бюджет и финансовая подушка.
+ипотека, расчёт накоплений, личный бюджет и финансовая подушка.
           </p>
         </div>
 
-   <div class="tabs">
+  <div class="tabs">
   <button class="tab active" data-tab="credit">Кредит</button>
   <button class="tab" data-tab="early">Досрочное погашение</button>
+  <button class="tab" data-tab="mortgage">Ипотека</button>
   <button class="tab" data-tab="savings">Накопления</button>
   <button class="tab" data-tab="budget">Бюджет</button>
   <button class="tab" data-tab="cushion">Финансовая подушка</button>
@@ -282,6 +295,69 @@
       </div>
 
       <p class="hint" id="earlyHint">
+        Нажмите «Рассчитать», чтобы увидеть результат.
+      </p>
+    </div>
+  </div>
+</div>
+        <div class="calculator" id="mortgage">
+  <div class="calc-grid">
+    <div class="calc-form">
+      <h3>Ипотечный калькулятор</h3>
+
+      <label>
+        Стоимость жилья, ₽
+        <input type="number" id="mortgagePrice" value="6000000" />
+      </label>
+
+      <label>
+        Первоначальный взнос, ₽
+        <input type="number" id="mortgageDown" value="1200000" />
+      </label>
+
+      <label>
+        Ставка, % годовых
+        <input type="number" id="mortgageRate" value="16" />
+      </label>
+
+      <label>
+        Срок, лет
+        <input type="number" id="mortgageYears" value="20" />
+      </label>
+
+      <label>
+        Доход семьи в месяц, ₽
+        <input type="number" id="mortgageIncome" value="150000" />
+      </label>
+
+      <button class="btn primary full" onclick="calculateMortgage()">Рассчитать</button>
+    </div>
+
+    <div class="result-card">
+      <h3>Результат</h3>
+      <p>Ежемесячный платёж:</p>
+      <div class="big-result" id="mortgagePayment">—</div>
+
+      <div class="result-list">
+        <div>
+          <span>Сумма кредита</span>
+          <strong id="mortgageLoan">—</strong>
+        </div>
+        <div>
+          <span>Общая выплата</span>
+          <strong id="mortgageTotal">—</strong>
+        </div>
+        <div>
+          <span>Переплата</span>
+          <strong id="mortgageOverpay">—</strong>
+        </div>
+        <div>
+          <span>Нагрузка на доход</span>
+          <strong id="mortgageLoad">—</strong>
+        </div>
+      </div>
+
+      <p class="hint" id="mortgageHint">
         Нажмите «Рассчитать», чтобы увидеть результат.
       </p>
     </div>
@@ -1138,7 +1214,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v0.8.3</span>
+    <span>© 2026 CalcPilot · v0.9</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

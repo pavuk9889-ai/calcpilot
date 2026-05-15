@@ -51,14 +51,14 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v0.7.2</div>
+          <div class="badge">MVP-версия v0.8</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
           <p>
-            CalcPilot помогает быстро оценить кредит, накопления, личный бюджет
-и финансовую подушку, чтобы принимать решения спокойнее, понятнее
-и без сложных таблиц.
+            CalcPilot помогает быстро оценить кредит, досрочное погашение,
+накопления, личный бюджет и финансовую подушку, чтобы принимать
+решения спокойнее, понятнее и без сложных таблиц.
           </p>
 
           <div class="hero-actions">
@@ -75,7 +75,7 @@
 
           <div class="mini-stats">
             <div>
-              <strong>4</strong>
+              <strong>5</strong>
               <span>калькулятора</span>
             </div>
             <div>
@@ -153,13 +153,14 @@
         <div class="section-head">
           <h2>Калькуляторы</h2>
           <p>
-            Первые инструменты CalcPilot: кредитный калькулятор, расчёт накоплений,
-личный бюджет и финансовая подушка. Они помогают быстро получить ориентир по деньгам.
+            Первые инструменты CalcPilot: кредитный калькулятор, досрочное погашение,
+расчёт накоплений, личный бюджет и финансовая подушка.
           </p>
         </div>
 
-       <div class="tabs">
+   <div class="tabs">
   <button class="tab active" data-tab="credit">Кредит</button>
+  <button class="tab" data-tab="early">Досрочное погашение</button>
   <button class="tab" data-tab="savings">Накопления</button>
   <button class="tab" data-tab="budget">Бюджет</button>
   <button class="tab" data-tab="cushion">Финансовая подушка</button>
@@ -210,6 +211,73 @@
             </div>
           </div>
         </div>
+        <div class="calculator" id="early">
+  <div class="calc-grid">
+    <div class="calc-form">
+      <h3>Калькулятор досрочного погашения</h3>
+
+      <label>
+        Остаток долга, ₽
+        <input type="number" id="earlyAmount" value="500000" />
+      </label>
+
+      <label>
+        Ставка, % годовых
+        <input type="number" id="earlyRate" value="18" />
+      </label>
+
+      <label>
+        Осталось платить, месяцев
+        <input type="number" id="earlyMonths" value="36" />
+      </label>
+
+      <label>
+        Сумма досрочного погашения, ₽
+        <input type="number" id="earlyExtra" value="100000" />
+      </label>
+
+      <button class="btn primary full" onclick="calculateEarlyRepayment()">Рассчитать</button>
+    </div>
+
+    <div class="result-card">
+      <h3>Результат</h3>
+      <p>Текущий ежемесячный платёж:</p>
+
+      <div class="big-result" id="earlyCurrentPayment">—</div>
+
+      <div class="result-list">
+        <div>
+          <span>Переплата без досрочного</span>
+          <strong id="earlyOldOverpay">—</strong>
+        </div>
+
+        <div>
+          <span>Новый платёж при уменьшении платежа</span>
+          <strong id="earlyNewPayment">—</strong>
+        </div>
+
+        <div>
+          <span>Экономия при уменьшении платежа</span>
+          <strong id="earlyPaymentSaving">—</strong>
+        </div>
+
+        <div>
+          <span>Новый срок при уменьшении срока</span>
+          <strong id="earlyNewTerm">—</strong>
+        </div>
+
+        <div>
+          <span>Экономия при уменьшении срока</span>
+          <strong id="earlyTermSaving">—</strong>
+        </div>
+      </div>
+
+      <p class="hint" id="earlyHint">
+        Нажмите «Рассчитать», чтобы увидеть результат.
+      </p>
+    </div>
+  </div>
+</div>
 
         <div class="calculator" id="savings">
           <div class="calc-grid">
@@ -1056,7 +1124,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v0.7.2</span>
+    <span>© 2026 CalcPilot · v0.8</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

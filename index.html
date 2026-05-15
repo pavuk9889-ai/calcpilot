@@ -51,14 +51,14 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v0.9.1</div>
+          <div class="badge">MVP-версия v1.0</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
           <p>
             CalcPilot помогает быстро оценить кредит, досрочное погашение,
-ипотеку, накопления, личный бюджет и финансовую подушку, чтобы принимать
-решения спокойнее, понятнее и без сложных таблиц.
+ипотеку, накопления, личный бюджет, финансовую подушку и пенсионный план,
+чтобы принимать решения спокойнее, понятнее и без сложных таблиц.
           </p>
 
           <div class="hero-actions">
@@ -75,7 +75,7 @@
 
           <div class="mini-stats">
             <div>
-              <strong>6</strong>
+              <strong>7</strong>
               <span>калькуляторов</span>
             </div>
             <div>
@@ -143,6 +143,18 @@
              onclick="sendGoal('scenario_savings_click'); document.querySelector('[data-tab=savings]').click()">Рассчитать накопления</a>
 
           </div>
+          
+           <div class="info-card">
+  <h3>Планирую пенсию</h3>
+  <p>
+    Оцените, сколько капитала может накопиться к пенсии, хватит ли его
+    на желаемую ежемесячную сумму и какой разрыв может остаться до цели.
+  </p>
+  <a href="#calculators" class="btn secondary"
+     onclick="sendGoal('scenario_pension_click'); document.querySelector('[data-tab=pension]').click()">
+    Рассчитать пенсионный план
+  </a>
+</div>
 
           <div class="info-card">
             <h3>Хочу понять свой бюджет</h3>
@@ -175,18 +187,20 @@
           <h2>Калькуляторы</h2>
           <p>
             Первые инструменты CalcPilot: кредитный калькулятор, досрочное погашение,
-ипотека, расчёт накоплений, личный бюджет и финансовая подушка.
+ипотека, расчёт накоплений, пенсионный план, личный бюджет и финансовая подушка.
           </p>
         </div>
 
-  <div class="tabs">
+<div class="tabs">
   <button class="tab active" data-tab="credit">Кредит</button>
   <button class="tab" data-tab="early">Досрочное погашение</button>
   <button class="tab" data-tab="mortgage">Ипотека</button>
   <button class="tab" data-tab="savings">Накопления</button>
+  <button class="tab" data-tab="pension">Пенсия</button>
   <button class="tab" data-tab="budget">Бюджет</button>
   <button class="tab" data-tab="cushion">Финансовая подушка</button>
 </div>
+
 
         <div class="calculator active" id="credit">
           <div class="calc-grid">
@@ -409,6 +423,79 @@
             </div>
           </div>
         </div>
+        <div class="calculator" id="pension">
+  <div class="calc-grid">
+    <div class="calc-form">
+      <h3>Пенсионный калькулятор</h3>
+
+      <label>
+        Текущий возраст
+        <input type="number" id="pensionAge" value="35" />
+      </label>
+
+      <label>
+        Возраст выхода на пенсию
+        <input type="number" id="pensionRetireAge" value="65" />
+      </label>
+
+      <label>
+        Уже накоплено, ₽
+        <input type="number" id="pensionCurrent" value="300000" />
+      </label>
+
+      <label>
+        Ежемесячно откладывать, ₽
+        <input type="number" id="pensionMonthly" value="15000" />
+      </label>
+
+      <label>
+        Желаемая пенсия в месяц, ₽
+        <input type="number" id="pensionDesired" value="60000" />
+      </label>
+
+      <label>
+        Ожидаемая доходность, % годовых
+        <input type="number" id="pensionReturn" value="7" />
+      </label>
+
+      <label>
+        Инфляция, % годовых
+        <input type="number" id="pensionInflation" value="5" />
+      </label>
+
+      <button class="btn primary full" onclick="calculatePension()">Рассчитать</button>
+    </div>
+
+    <div class="result-card">
+      <h3>Результат</h3>
+      <p>Прогноз капитала к пенсии:</p>
+      <div class="big-result" id="pensionCapital">—</div>
+
+      <div class="result-list">
+        <div>
+          <span>До пенсии осталось</span>
+          <strong id="pensionYearsLeft">—</strong>
+        </div>
+        <div>
+          <span>Целевой капитал</span>
+          <strong id="pensionTarget">—</strong>
+        </div>
+        <div>
+          <span>Разрыв до цели</span>
+          <strong id="pensionGap">—</strong>
+        </div>
+        <div>
+          <span>Готовность плана</span>
+          <strong id="pensionProgress">—</strong>
+        </div>
+      </div>
+
+      <p class="hint" id="pensionHint">
+        Нажмите «Рассчитать», чтобы увидеть результат.
+      </p>
+    </div>
+  </div>
+</div>
 
         <div class="calculator" id="budget">
           <div class="calc-grid">
@@ -1216,7 +1303,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v0.9.1</span>
+    <span>© 2026 CalcPilot · v1.0</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

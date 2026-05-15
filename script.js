@@ -25,9 +25,19 @@ function formatRub(value) {
 }
 
 function getNumber(id) {
-  return Number(document.getElementById(id).value);
+  const element = document.getElementById(id);
+  if (!element) return 0;
+  return Number(element.value);
 }
 
+function setText(id, value) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.textContent = value;
+  }
+}
+
+/* Переключение вкладок калькуляторов */
 document.querySelectorAll(".tab").forEach((button) => {
   button.addEventListener("click", () => {
     const tabName = button.dataset.tab;
@@ -41,10 +51,15 @@ document.querySelectorAll(".tab").forEach((button) => {
     });
 
     button.classList.add("active");
-    document.getElementById(tabName).classList.add("active");
+
+    const targetCalculator = document.getElementById(tabName);
+    if (targetCalculator) {
+      targetCalculator.classList.add("active");
+    }
   });
 });
 
+/* Кредитный калькулятор */
 function calculateCredit(trackGoal = true) {
   const amount = getNumber("creditAmount");
   const annualRate = getNumber("creditRate");
@@ -68,9 +83,9 @@ function calculateCredit(trackGoal = true) {
   const total = payment * months;
   const overpay = total - amount;
 
-  document.getElementById("creditPayment").textContent = formatRub(payment);
-  document.getElementById("creditTotal").textContent = formatRub(total);
-  document.getElementById("creditOverpay").textContent = formatRub(overpay);
+  setText("creditPayment", formatRub(payment));
+  setText("creditTotal", formatRub(total));
+  setText("creditOverpay", formatRub(overpay));
 
   let hint = "";
 
@@ -82,12 +97,14 @@ function calculateCredit(trackGoal = true) {
     hint = "Расчёт выглядит умеренным, но перед оформлением кредита важно учитывать страховки, комиссии и досрочное погашение.";
   }
 
-  document.getElementById("creditHint").textContent = hint;
+  setText("creditHint", hint);
+
   if (trackGoal) {
-  sendGoal("credit_calculate");
-}
+    sendGoal("credit_calculate");
+  }
 }
 
+/* Калькулятор накоплений */
 function calculateSavings(trackGoal = true) {
   const goal = getNumber("savingsGoal");
   const current = getNumber("savingsCurrent");
@@ -109,12 +126,9 @@ function calculateSavings(trackGoal = true) {
     year: "numeric"
   });
 
-  document.getElementById("savingsMonths").textContent =
-    months === 0 ? "цель уже достигнута" : `${months} мес.`;
-
-  document.getElementById("savingsLeft").textContent = formatRub(left);
-  document.getElementById("savingsDate").textContent =
-    months === 0 ? "уже сейчас" : dateText;
+  setText("savingsMonths", months === 0 ? "цель уже достигнута" : `${months} мес.`);
+  setText("savingsLeft", formatRub(left));
+  setText("savingsDate", months === 0 ? "уже сейчас" : dateText);
 
   let hint = "";
 
@@ -128,12 +142,14 @@ function calculateSavings(trackGoal = true) {
     hint = "Срок накопления довольно длинный. Возможно, стоит увеличить ежемесячный взнос или разбить цель на этапы.";
   }
 
-  document.getElementById("savingsHint").textContent = hint;
- if (trackGoal) {
-  sendGoal("savings_calculate");
-}
+  setText("savingsHint", hint);
+
+  if (trackGoal) {
+    sendGoal("savings_calculate");
+  }
 }
 
+/* Калькулятор личного бюджета */
 function calculateBudget(trackGoal = true) {
   const income = getNumber("budgetIncome");
   const fixed = getNumber("budgetFixed");
@@ -150,9 +166,9 @@ function calculateBudget(trackGoal = true) {
   const spendRate = expenses / income * 100;
   const saveRate = free / income * 100;
 
-  document.getElementById("budgetFree").textContent = formatRub(free);
-  document.getElementById("budgetSpendRate").textContent = `${spendRate.toFixed(1)}%`;
-  document.getElementById("budgetSaveRate").textContent = `${saveRate.toFixed(1)}%`;
+  setText("budgetFree", formatRub(free));
+  setText("budgetSpendRate", `${spendRate.toFixed(1)}%`);
+  setText("budgetSaveRate", `${saveRate.toFixed(1)}%`);
 
   let hint = "";
 
@@ -166,13 +182,14 @@ function calculateBudget(trackGoal = true) {
     hint = "Отличный уровень свободного остатка. Можно распределить деньги между подушкой, целями и инвестициями.";
   }
 
-  document.getElementById("budgetHint").textContent = hint;
+  setText("budgetHint", hint);
 
   if (trackGoal) {
     sendGoal("budget_calculate");
   }
 }
 
+/* Калькулятор финансовой подушки */
 function calculateCushion(trackGoal = true) {
   const expenses = getNumber("cushionExpenses");
   const months = getNumber("cushionMonths");
@@ -189,14 +206,10 @@ function calculateCushion(trackGoal = true) {
   const time = left === 0 ? 0 : Math.ceil(left / monthly);
   const progress = target > 0 ? Math.min((current / target) * 100, 100) : 0;
 
-  document.getElementById("cushionTarget").textContent = formatRub(target);
-  document.getElementById("cushionLeft").textContent = formatRub(left);
-
-  document.getElementById("cushionTime").textContent =
-    time === 0 ? "уже готова" : `${time} мес.`;
-
-  document.getElementById("cushionProgress").textContent =
-    `${progress.toFixed(1)}%`;
+  setText("cushionTarget", formatRub(target));
+  setText("cushionLeft", formatRub(left));
+  setText("cushionTime", time === 0 ? "уже готова" : `${time} мес.`);
+  setText("cushionProgress", `${progress.toFixed(1)}%`);
 
   let hint = "";
 
@@ -210,47 +223,18 @@ function calculateCushion(trackGoal = true) {
     hint = "Финансовая подушка пока небольшая. Начните с цели хотя бы на 1–3 месяца расходов.";
   }
 
-  document.getElementById("cushionHint").textContent = hint;
+  setText("cushionHint", hint);
 
   if (trackGoal) {
     sendGoal("cushion_calculate");
   }
 }
 
-  const target = expenses * months;
-  const left = Math.max(target - current, 0);
-  const time = left === 0 ? 0 : Math.ceil(left / monthly);
-  const progress = target > 0 ? Math.min((current / target) * 100, 100) : 0;
-
-  document.getElementById("cushionTarget").textContent = formatRub(target);
-  document.getElementById("cushionLeft").textContent = formatRub(left);
-  document.getElementById("cushionTime").textContent =
-    time === 0 ? "уже готова" : `${time} мес.`;
-  document.getElementById("cushionProgress").textContent =
-    `${progress.toFixed(1)}%`;
-
-  let hint = "";
-
-  if (progress >= 100) {
-    hint = "Отлично! Финансовая подушка уже сформирована. Важно хранить её в доступном и надёжном инструменте.";
-  } else if (progress >= 70) {
-    hint = "Подушка почти готова. Осталось немного до рекомендуемого уровня.";
-  } else if (progress >= 30) {
-    hint = "Хорошее начало. Продолжайте регулярно откладывать, чтобы выйти на безопасный уровень.";
-  } else {
-    hint = "Финансовая подушка пока небольшая. Начните с цели хотя бы на 1–3 месяца расходов.";
-  }
-
-  document.getElementById("cushionHint").textContent = hint;
-
-  if (trackGoal) {
-    sendGoal("cushion_calculate");
-  }
-}
-}
-
+/* ИИ-помощник */
 function askAssistant() {
   const input = document.getElementById("userQuestion");
+  if (!input) return;
+
   const question = input.value.trim();
 
   if (!question) return;
@@ -259,6 +243,7 @@ function askAssistant() {
   sendGoal("assistant_question");
 
   const answer = generateAssistantAnswer(question);
+
   setTimeout(() => {
     addMessage(answer, "bot");
   }, 400);
@@ -268,6 +253,8 @@ function askAssistant() {
 
 function addMessage(text, type) {
   const chatWindow = document.getElementById("chatWindow");
+  if (!chatWindow) return;
+
   const message = document.createElement("div");
 
   message.className = `message ${type}`;
@@ -292,18 +279,18 @@ function generateAssistantAnswer(question) {
     return "Для бюджета начните с трёх цифр: доход, обязательные расходы и переменные расходы. Хорошая цель — откладывать хотя бы 10–20% дохода.";
   }
 
+  if (q.includes("подуш")) {
+    return "Финансовая подушка — это запас денег на непредвиденные ситуации. Обычно ориентируются на 3–6 месяцев обязательных расходов.";
+  }
+
   if (q.includes("инвест") || q.includes("вклад") || q.includes("деньги")) {
     return "Перед инвестициями обычно стоит сначала собрать финансовую подушку на 3–6 месяцев расходов. После этого можно сравнивать вклады, облигации и другие инструменты с учётом риска.";
   }
 
-  return "Пока я работаю в демо-режиме. Лучше всего я отвечаю на вопросы про кредиты, накопления и личный бюджет. Попробуйте задать вопрос чуть конкретнее.";
+  return "Пока я работаю в демо-режиме. Лучше всего я отвечаю на вопросы про кредиты, накопления, финансовую подушку и личный бюджет. Попробуйте задать вопрос чуть конкретнее.";
 }
 
-calculateCredit(false);
-calculateSavings(false);
-calculateBudget(false);
-calculateCushion(false);
-
+/* Cookie banner */
 function acceptCookies() {
   const banner = document.getElementById("cookieBanner");
 
@@ -337,5 +324,22 @@ function initCookieBanner() {
   }
 }
 
-initCookieBanner();
+/* Делаем функции доступными для кнопок onclick */
+window.calculateCredit = calculateCredit;
+window.calculateSavings = calculateSavings;
+window.calculateBudget = calculateBudget;
+window.calculateCushion = calculateCushion;
+window.askAssistant = askAssistant;
+window.acceptCookies = acceptCookies;
 
+/* Стартовые расчёты без отправки целей в Метрику */
+try {
+  calculateCredit(false);
+  calculateSavings(false);
+  calculateBudget(false);
+  calculateCushion(false);
+} catch (error) {
+  console.warn("Ошибка при стартовом расчёте:", error);
+}
+
+initCookieBanner();

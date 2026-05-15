@@ -51,14 +51,15 @@
     <section id="top" class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v1.0.2</div>
+          <div class="badge">MVP-версия v1.1</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
           <p>
             CalcPilot помогает быстро оценить кредит, досрочное погашение,
-ипотеку, накопления, личный бюджет, финансовую подушку и пенсионный план,
-чтобы принимать решения спокойнее, понятнее и без сложных таблиц.
+ипотеку, накопления, вклад, личный бюджет, финансовую подушку
+и пенсионный план, чтобы принимать решения спокойнее, понятнее
+и без сложных таблиц.
           </p>
 
           <div class="hero-actions">
@@ -75,7 +76,7 @@
 
           <div class="mini-stats">
             <div>
-              <strong>7</strong>
+              <strong>8</strong>
               <span>калькуляторов</span>
             </div>
             <div>
@@ -143,6 +144,17 @@
              onclick="sendGoal('scenario_savings_click'); document.querySelector('[data-tab=savings]').click()">Рассчитать накопления</a>
 
           </div>
+          <div class="info-card">
+  <h3>Хочу рассчитать вклад</h3>
+  <p>
+    Оцените, сколько денег получится накопить на вкладе с учётом ставки,
+    срока, начальной суммы, пополнений и капитализации процентов.
+  </p>
+  <a href="#calculators" class="btn secondary"
+     onclick="sendGoal('scenario_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
+    Рассчитать вклад
+  </a>
+</div>
           
            <div class="info-card">
   <h3>Планирую пенсию</h3>
@@ -187,18 +199,20 @@
           <h2>Калькуляторы</h2>
           <p>
             Первые инструменты CalcPilot: кредитный калькулятор, досрочное погашение,
-ипотека, расчёт накоплений, пенсионный план, личный бюджет и финансовая подушка.
+ипотека, расчёт накоплений, калькулятор вклада, пенсионный план,
+личный бюджет и финансовая подушка.
           </p>
         </div>
 
 <div class="tabs">
   <button class="tab active" data-tab="credit">Кредит</button>
-  <button class="tab" data-tab="early">Досрочное погашение</button>
-  <button class="tab" data-tab="mortgage">Ипотека</button>
-  <button class="tab" data-tab="savings">Накопления</button>
-  <button class="tab" data-tab="pension">Пенсия</button>
-  <button class="tab" data-tab="budget">Бюджет</button>
-  <button class="tab" data-tab="cushion">Финансовая подушка</button>
+<button class="tab" data-tab="early">Досрочное погашение</button>
+<button class="tab" data-tab="mortgage">Ипотека</button>
+<button class="tab" data-tab="savings">Накопления</button>
+<button class="tab" data-tab="deposit">Вклад</button>
+<button class="tab" data-tab="pension">Пенсия</button>
+<button class="tab" data-tab="budget">Бюджет</button>
+<button class="tab" data-tab="cushion">Финансовая подушка</button>
 </div>
 
 
@@ -423,6 +437,72 @@
             </div>
           </div>
         </div>
+        <div class="calculator" id="deposit">
+  <div class="calc-grid">
+    <div class="calc-form">
+      <h3>Калькулятор вклада</h3>
+
+      <label>
+        Начальная сумма, ₽
+        <input type="number" id="depositStart" value="300000" />
+      </label>
+
+      <label>
+        Ежемесячное пополнение, ₽
+        <input type="number" id="depositMonthly" value="20000" />
+      </label>
+
+      <label>
+        Ставка, % годовых
+        <input type="number" id="depositRate" value="12" />
+      </label>
+
+      <label>
+        Срок, месяцев
+        <input type="number" id="depositMonths" value="24" />
+      </label>
+
+      <label>
+        Капитализация процентов
+        <select id="depositCapitalization">
+          <option value="monthly" selected>Ежемесячная</option>
+          <option value="none">Без капитализации</option>
+        </select>
+      </label>
+
+      <button class="btn primary full" onclick="calculateDeposit()">Рассчитать</button>
+    </div>
+
+    <div class="result-card">
+      <h3>Результат</h3>
+      <p>Итоговая сумма:</p>
+      <div class="big-result" id="depositTotal">—</div>
+
+      <div class="result-list">
+        <div>
+          <span>Начальная сумма</span>
+          <strong id="depositStartResult">—</strong>
+        </div>
+        <div>
+          <span>Собственные пополнения</span>
+          <strong id="depositContributions">—</strong>
+        </div>
+        <div>
+          <span>Начисленные проценты</span>
+          <strong id="depositInterest">—</strong>
+        </div>
+        <div>
+          <span>Доходность к своим деньгам</span>
+          <strong id="depositYield">—</strong>
+        </div>
+      </div>
+
+      <p class="hint" id="depositHint">
+        Нажмите «Рассчитать», чтобы увидеть результат.
+      </p>
+    </div>
+  </div>
+</div>
         <div class="calculator" id="pension">
   <div class="calc-grid">
     <div class="calc-form">
@@ -1313,7 +1393,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v1.0.2</span>
+    <span>© 2026 CalcPilot · v1.1</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

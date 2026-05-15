@@ -657,4 +657,30 @@ select:focus {
   box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
+.next-step-card {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 18px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.next-step-card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #111827;
+}
+
+.next-step-card p {
+  margin: 0 0 14px;
+  color: #4b5563;
+  line-height: 1.55;
+}
+
+.next-step-card .btn {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 14px;
+}
 

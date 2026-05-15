@@ -639,4 +639,22 @@ input:focus {
 #cushion-guide .cards {
   margin-bottom: 0;
 }
+select {
+  width: 100%;
+  margin-top: 8px;
+  min-height: 48px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  font-size: 16px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+}
+
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
 

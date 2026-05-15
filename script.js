@@ -302,6 +302,68 @@ function calculateSavings(trackGoal = true) {
     sendGoal("savings_calculate");
   }
 }
+
+/* Калькулятор вкладов */
+function calculateDeposit(trackGoal = true) {
+  const start = getNumber("depositStart");
+  const monthly = getNumber("depositMonthly");
+  const annualRate = getNumber("depositRate");
+  const months = getNumber("depositMonths");
+  const capitalizationElement = document.getElementById("depositCapitalization");
+  const capitalization = capitalizationElement ? capitalizationElement.value : "monthly";
+
+  if (start < 0 || monthly < 0 || annualRate < 0 || months <= 0) {
+    alert("Проверьте данные: суммы и ставка не должны быть отрицательными, срок должен быть больше нуля.");
+    return;
+  }
+
+  const monthlyRate = annualRate / 100 / 12;
+
+  let balance = start;
+  let totalInterest = 0;
+
+  if (capitalization === "monthly") {
+    for (let i = 0; i < months; i++) {
+      balance += monthly;
+      const interest = balance * monthlyRate;
+      balance += interest;
+      totalInterest += interest;
+    }
+  } else {
+    const ownMoney = start + monthly * months;
+    totalInterest = ownMoney * (annualRate / 100) * (months / 12);
+    balance = ownMoney + totalInterest;
+  }
+
+  const contributions = monthly * months;
+  const ownMoney = start + contributions;
+  const yieldRate = ownMoney > 0 ? totalInterest / ownMoney * 100 : 0;
+
+  setText("depositTotal", formatRub(balance));
+  setText("depositStartResult", formatRub(start));
+  setText("depositContributions", formatRub(contributions));
+  setText("depositInterest", formatRub(totalInterest));
+  setText("depositYield", `${yieldRate.toFixed(1)}%`);
+
+  let hint = "";
+
+  if (annualRate < 5) {
+    hint = "Ставка выглядит низкой. Стоит сравнить предложения разных банков и учитывать инфляцию.";
+  } else if (yieldRate >= 20) {
+    hint = "За счёт срока, ставки и пополнений вклад даёт заметный процентный доход. Не забудьте проверить условия досрочного снятия.";
+  } else if (monthly > 0) {
+    hint = "Регулярные пополнения помогают заметно увеличить итоговую сумму даже при умеренной ставке.";
+  } else {
+    hint = "Расчёт показывает примерный доход по вкладу. Для точного результата проверьте условия капитализации и выплаты процентов в банке.";
+  }
+
+  setText("depositHint", hint);
+
+  if (trackGoal) {
+    sendGoal("deposit_calculate");
+  }
+}
+
 /* Пенсионный калькулятор */
 function calculatePension(trackGoal = true) {
   const age = getNumber("pensionAge");
@@ -508,12 +570,15 @@ function generateAssistantAnswer(question) {
   if (q.includes("подуш")) {
     return "Финансовая подушка — это запас денег на непредвиденные ситуации. Обычно ориентируются на 3–6 месяцев обязательных расходов.";
   }
+  if (q.includes("вклад") || q.includes("депозит") || q.includes("процент")) {
+  return "Калькулятор вклада помогает оценить итоговую сумму, начисленные проценты и доходность с учётом начальной суммы, регулярных пополнений, ставки, срока и капитализации процентов.";
+}
 
   if (q.includes("инвест") || q.includes("вклад") || q.includes("деньги")) {
     return "Перед инвестициями обычно стоит сначала собрать финансовую подушку на 3–6 месяцев расходов. После этого можно сравнивать вклады, облигации и другие инструменты с учётом риска.";
   }
 
-  return "Пока я работаю в демо-режиме. Лучше всего я отвечаю на вопросы про кредиты, ипотеку, досрочное погашение, накопления, пенсию, финансовую подушку и личный бюджет. Попробуйте задать вопрос чуть конкретнее.";
+  return "Пока я работаю в демо-режиме. Лучше всего я отвечаю на вопросы про кредиты, ипотеку, досрочное погашение, накопления, вклады, пенсию, финансовую подушку и личный бюджет. Попробуйте задать вопрос чуть конкретнее.";
 }
 
 /* Cookie banner */
@@ -555,6 +620,7 @@ window.calculateCredit = calculateCredit;
 window.calculateEarlyRepayment = calculateEarlyRepayment;
 window.calculateMortgage = calculateMortgage;
 window.calculateSavings = calculateSavings;
+window.calculateDeposit = calculateDeposit;
 window.calculatePension = calculatePension;
 window.calculateBudget = calculateBudget;
 window.calculateCushion = calculateCushion;
@@ -567,6 +633,7 @@ try {
 calculateEarlyRepayment(false);
 calculateMortgage(false);
 calculateSavings(false);
+calculateDeposit(false);
 calculatePension(false);
 calculateBudget(false);
 calculateCushion(false);

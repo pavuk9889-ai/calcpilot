@@ -302,6 +302,67 @@ function calculateSavings(trackGoal = true) {
     sendGoal("savings_calculate");
   }
 }
+/* Пенсионный калькулятор */
+function calculatePension(trackGoal = true) {
+  const age = getNumber("pensionAge");
+  const retireAge = getNumber("pensionRetireAge");
+  const current = getNumber("pensionCurrent");
+  const monthly = getNumber("pensionMonthly");
+  const desired = getNumber("pensionDesired");
+  const annualReturn = getNumber("pensionReturn");
+  const inflation = getNumber("pensionInflation");
+
+  if (age <= 0 || retireAge <= age || current < 0 || monthly < 0 || desired <= 0) {
+    alert("Проверьте данные: возраст выхода на пенсию должен быть больше текущего возраста, суммы не могут быть отрицательными.");
+    return;
+  }
+
+  if (annualReturn < -100 || inflation < -100) {
+    alert("Проверьте доходность и инфляцию: значения не должны быть ниже -100%.");
+    return;
+  }
+
+  const yearsLeft = retireAge - age;
+  const monthsLeft = yearsLeft * 12;
+
+  const realAnnualRate = ((1 + annualReturn / 100) / (1 + inflation / 100)) - 1;
+  const monthlyRate = Math.pow(1 + realAnnualRate, 1 / 12) - 1;
+
+  let capital = current;
+
+  for (let i = 0; i < monthsLeft; i++) {
+    capital = capital * (1 + monthlyRate) + monthly;
+  }
+
+  const retirementYears = 20;
+  const target = desired * 12 * retirementYears;
+  const gap = Math.max(target - capital, 0);
+  const progress = target > 0 ? Math.min((capital / target) * 100, 100) : 0;
+
+  setText("pensionCapital", formatRub(capital));
+  setText("pensionYearsLeft", `${yearsLeft} лет`);
+  setText("pensionTarget", formatRub(target));
+  setText("pensionGap", gap === 0 ? "цель достигнута" : formatRub(gap));
+  setText("pensionProgress", `${progress.toFixed(1)}%`);
+
+  let hint = "";
+
+  if (progress >= 100) {
+    hint = "По предварительному расчёту пенсионная цель выглядит достижимой. Важно периодически пересчитывать план с учётом доходности, инфляции и изменения расходов.";
+  } else if (progress >= 70) {
+    hint = "План близок к цели. Можно немного увеличить ежемесячный взнос или пересмотреть желаемую сумму пенсии.";
+  } else if (progress >= 40) {
+    hint = "Есть хорошая база, но до цели ещё остаётся разрыв. Регулярное пополнение и более ранний старт сильно влияют на итоговый капитал.";
+  } else {
+    hint = "До цели пока значительный разрыв. Стоит рассмотреть увеличение ежемесячных накоплений, более длинный горизонт или пересмотр желаемой суммы.";
+  }
+
+  setText("pensionHint", hint);
+
+  if (trackGoal) {
+    sendGoal("pension_calculate");
+  }
+}
 
 /* Калькулятор личного бюджета */
 function calculateBudget(trackGoal = true) {
@@ -424,6 +485,9 @@ function generateAssistantAnswer(question) {
   if (q.includes("ипотек")) {
     return "Ипотечный калькулятор поможет оценить примерный ежемесячный платёж, сумму кредита, переплату и нагрузку на доход. Для расчёта укажите стоимость жилья, первоначальный взнос, ставку, срок и доход семьи.";
   }
+  if (q.includes("пенси") || q.includes("пенсию") || q.includes("старост")) {
+  return "Пенсионный калькулятор помогает оценить, какой капитал может накопиться к выбранному возрасту и насколько он покрывает желаемую ежемесячную пенсию. Для расчёта укажите текущий возраст, возраст выхода на пенсию, уже накопленную сумму, ежемесячное пополнение, ожидаемую доходность и инфляцию.";
+}
 
   if (q.includes("досроч") || q.includes("погаш")) {
     return "При досрочном погашении обычно сравнивают два варианта: уменьшить ежемесячный платёж или сократить срок кредита. Уменьшение срока чаще даёт большую экономию на процентах, а уменьшение платежа снижает нагрузку на бюджет.";
@@ -491,6 +555,7 @@ window.calculateCredit = calculateCredit;
 window.calculateEarlyRepayment = calculateEarlyRepayment;
 window.calculateMortgage = calculateMortgage;
 window.calculateSavings = calculateSavings;
+window.calculatePension = calculatePension;
 window.calculateBudget = calculateBudget;
 window.calculateCushion = calculateCushion;
 window.askAssistant = askAssistant;
@@ -502,6 +567,7 @@ try {
 calculateEarlyRepayment(false);
 calculateMortgage(false);
 calculateSavings(false);
+calculatePension(false);
 calculateBudget(false);
 calculateCushion(false);
 } catch (error) {

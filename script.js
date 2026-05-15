@@ -640,6 +640,7 @@ window.calculateBudget = calculateBudget;
 window.calculateCushion = calculateCushion;
 window.askAssistant = askAssistant;
 window.acceptCookies = acceptCookies;
+window.sendGoal = sendGoal;
 
 /* Стартовые расчёты без отправки целей в Метрику */
 try {

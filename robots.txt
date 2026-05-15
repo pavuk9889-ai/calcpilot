@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pavuk9889-ai.github.io/calcpilot/sitemap.xml
+Sitemap: https://calcpilot.ru/sitemap.xml
+

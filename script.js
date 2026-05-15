@@ -200,3 +200,23 @@ function generateAssistantAnswer(question) {
 calculateCredit();
 calculateSavings();
 calculateBudget();
+
+function acceptCookies() {
+  localStorage.setItem("calcpilotCookiesAccepted", "true");
+
+  const banner = document.getElementById("cookieBanner");
+  if (banner) {
+    banner.classList.remove("show");
+  }
+}
+
+function initCookieBanner() {
+  const accepted = localStorage.getItem("calcpilotCookiesAccepted");
+  const banner = document.getElementById("cookieBanner");
+
+  if (!accepted && banner) {
+    banner.classList.add("show");
+  }
+}
+
+initCookieBanner();

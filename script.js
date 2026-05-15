@@ -103,6 +103,106 @@ function calculateCredit(trackGoal = true) {
     sendGoal("credit_calculate");
   }
 }
+function getAnnuityPayment(amount, annualRate, months) {
+  const monthlyRate = annualRate / 100 / 12;
+
+  if (months <= 0) return 0;
+
+  if (monthlyRate === 0) {
+    return amount / months;
+  }
+
+  return amount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+}
+
+function simulateLoan(principal, annualRate, monthlyPayment) {
+  const monthlyRate = annualRate / 100 / 12;
+  let balance = principal;
+  let months = 0;
+  let totalPaid = 0;
+
+  while (balance > 0.01 && months < 1000) {
+    const interest = balance * monthlyRate;
+    const payment = Math.min(monthlyPayment, balance + interest);
+
+    balance = balance + interest - payment;
+    totalPaid += payment;
+    months += 1;
+  }
+
+  return {
+    months,
+    totalPaid,
+    overpay: Math.max(totalPaid - principal, 0)
+  };
+}
+
+function calculateEarlyRepayment(trackGoal = true) {
+  const amount = getNumber("earlyAmount");
+  const annualRate = getNumber("earlyRate");
+  const months = getNumber("earlyMonths");
+  const extra = getNumber("earlyExtra");
+
+  if (amount <= 0 || annualRate < 0 || months <= 0 || extra <= 0) {
+    alert("Проверьте данные: остаток долга, срок и сумма досрочного погашения должны быть больше нуля.");
+    return;
+  }
+
+  if (extra >= amount) {
+    setText("earlyCurrentPayment", "кредит можно закрыть");
+    setText("earlyOldOverpay", "—");
+    setText("earlyNewPayment", "0 ₽");
+    setText("earlyPaymentSaving", "—");
+    setText("earlyNewTerm", "0 мес.");
+    setText("earlyTermSaving", "—");
+    setText("earlyHint", "Сумма досрочного погашения равна или больше остатка долга. Такой платёж может полностью закрыть кредит.");
+
+    if (trackGoal) {
+      sendGoal("early_repayment_calculate");
+    }
+
+    return;
+  }
+
+  const currentPayment = getAnnuityPayment(amount, annualRate, months);
+  const oldTotal = currentPayment * months;
+  const oldOverpay = oldTotal - amount;
+
+  const newPrincipal = amount - extra;
+
+  const newPayment = getAnnuityPayment(newPrincipal, annualRate, months);
+  const totalWithLowerPayment = extra + newPayment * months;
+  const overpayWithLowerPayment = totalWithLowerPayment - amount;
+  const paymentSaving = oldOverpay - overpayWithLowerPayment;
+
+  const termSimulation = simulateLoan(newPrincipal, annualRate, currentPayment);
+  const totalWithLowerTerm = extra + termSimulation.totalPaid;
+  const overpayWithLowerTerm = totalWithLowerTerm - amount;
+  const termSaving = oldOverpay - overpayWithLowerTerm;
+
+  setText("earlyCurrentPayment", formatRub(currentPayment));
+  setText("earlyOldOverpay", formatRub(oldOverpay));
+  setText("earlyNewPayment", formatRub(newPayment));
+  setText("earlyPaymentSaving", formatRub(Math.max(paymentSaving, 0)));
+  setText("earlyNewTerm", `${termSimulation.months} мес.`);
+  setText("earlyTermSaving", formatRub(Math.max(termSaving, 0)));
+
+  let hint = "";
+
+  if (termSaving > paymentSaving) {
+    hint = "По предварительному расчёту уменьшение срока даёт большую экономию на процентах. Но если важнее снизить ежемесячную нагрузку, можно рассмотреть уменьшение платежа.";
+  } else if (paymentSaving > termSaving) {
+    hint = "По предварительному расчёту уменьшение платежа выглядит выгоднее, но обычно этот вариант выбирают прежде всего для снижения ежемесячной нагрузки.";
+  } else {
+    hint = "Оба варианта дают похожий результат. Выбор зависит от цели: быстрее закрыть кредит или снизить ежемесячную нагрузку.";
+  }
+
+  setText("earlyHint", hint);
+
+  if (trackGoal) {
+    sendGoal("early_repayment_calculate");
+  }
+}
 
 /* Калькулятор накоплений */
 function calculateSavings(trackGoal = true) {
@@ -266,6 +366,9 @@ function addMessage(text, type) {
 
 function generateAssistantAnswer(question) {
   const q = question.toLowerCase();
+  if (q.includes("досроч") || q.includes("погаш")) {
+  return "При досрочном погашении обычно сравнивают два варианта: уменьшить ежемесячный платёж или сократить срок кредита. Уменьшение срока чаще даёт большую экономию на процентах, а уменьшение платежа снижает нагрузку на бюджет.";
+}
 
   if (q.includes("кредит") || q.includes("ипотек") || q.includes("платёж") || q.includes("платеж")) {
     return "Если речь про кредит, начните с расчёта ежемесячного платежа и переплаты. Важно сравнить не только ставку, но и страховки, комиссии и возможность досрочного погашения.";
@@ -326,6 +429,7 @@ function initCookieBanner() {
 
 /* Делаем функции доступными для кнопок onclick */
 window.calculateCredit = calculateCredit;
+window.calculateEarlyRepayment = calculateEarlyRepayment;
 window.calculateSavings = calculateSavings;
 window.calculateBudget = calculateBudget;
 window.calculateCushion = calculateCushion;
@@ -335,9 +439,10 @@ window.acceptCookies = acceptCookies;
 /* Стартовые расчёты без отправки целей в Метрику */
 try {
   calculateCredit(false);
-  calculateSavings(false);
-  calculateBudget(false);
-  calculateCushion(false);
+calculateEarlyRepayment(false);
+calculateSavings(false);
+calculateBudget(false);
+calculateCushion(false);
 } catch (error) {
   console.warn("Ошибка при стартовом расчёте:", error);
 }

@@ -613,3 +613,30 @@ input:focus {
   line-height: 1.7;
   color: #4b5563;
 }
+
+/* Исправление интервалов в блоке финансовой подушки */
+#cushion-guide {
+  padding-top: 42px;
+}
+
+#cushion-guide .section-head {
+  margin-bottom: 24px;
+}
+
+#cushion-guide .cards + .section-head {
+  margin-top: 52px;
+}
+
+#cushion-guide .section-head h2 {
+  line-height: 1.18;
+}
+
+#cushion-guide .section-head p {
+  max-width: 920px;
+  line-height: 1.65;
+}
+
+#cushion-guide .cards {
+  margin-bottom: 0;
+}
+

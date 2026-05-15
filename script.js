@@ -5,6 +5,8 @@ function sendGoal(goalName) {
     if (typeof ym === "function") {
       ym(METRIKA_COUNTER_ID, "reachGoal", goalName);
       console.log("Цель отправлена в Метрику:", goalName);
+    } else {
+      console.warn("Яндекс.Метрика пока недоступна, цель не отправлена:", goalName);
     }
   } catch (error) {
     console.warn("Не удалось отправить цель в Метрику:", goalName, error);
@@ -43,7 +45,7 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
-function calculateCredit() {
+function calculateCredit(trackGoal = true) {
   const amount = getNumber("creditAmount");
   const annualRate = getNumber("creditRate");
   const months = getNumber("creditMonths");
@@ -81,10 +83,12 @@ function calculateCredit() {
   }
 
   document.getElementById("creditHint").textContent = hint;
+  if (trackGoal) {
   sendGoal("credit_calculate");
 }
+}
 
-function calculateSavings() {
+function calculateSavings(trackGoal = true) {
   const goal = getNumber("savingsGoal");
   const current = getNumber("savingsCurrent");
   const monthly = getNumber("savingsMonthly");
@@ -125,10 +129,12 @@ function calculateSavings() {
   }
 
   document.getElementById("savingsHint").textContent = hint;
+ if (trackGoal) {
   sendGoal("savings_calculate");
 }
+}
 
-function calculateBudget() {
+function calculateBudget(trackGoal = true) {
   const income = getNumber("budgetIncome");
   const fixed = getNumber("budgetFixed");
   const variable = getNumber("budgetVariable");
@@ -161,7 +167,9 @@ function calculateBudget() {
   }
 
   document.getElementById("budgetHint").textContent = hint;
+  if (trackGoal) {
   sendGoal("budget_calculate");
+}
 
 }
 
@@ -215,9 +223,9 @@ function generateAssistantAnswer(question) {
   return "Пока я работаю в демо-режиме. Лучше всего я отвечаю на вопросы про кредиты, накопления и личный бюджет. Попробуйте задать вопрос чуть конкретнее.";
 }
 
-calculateCredit();
-calculateSavings();
-calculateBudget();
+calculateCredit(false);
+calculateSavings(false);
+calculateBudget(false);
 
 function acceptCookies() {
   const banner = document.getElementById("cookieBanner");

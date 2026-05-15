@@ -51,7 +51,7 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v0.7.1</div>
+          <div class="badge">MVP-версия v0.7.2</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
@@ -107,7 +107,9 @@
               Рассчитайте примерный ежемесячный платёж, общую сумму выплат и переплату.
               Это поможет заранее понять нагрузку на бюджет.
             </p>
-           <a href="#calculators" class="btn secondary" onclick="document.querySelector('[data-tab=credit]').click()">Рассчитать кредит</a>
+           <a href="#calculators" class="btn secondary" 
+             onclick="sendGoal('scenario_credit_click'); document.querySelector('[data-tab=credit]').click()">Рассчитать кредит</a>
+
           </div>
 
           <div class="info-card">
@@ -116,7 +118,9 @@
               Укажите сумму цели, сколько уже накоплено и сколько готовы откладывать.
               Сервис покажет примерный срок достижения цели.
             </p>
-            <a href="#calculators" class="btn secondary" onclick="document.querySelector('[data-tab=savings]').click()">Рассчитать накопления</a>
+           <a href="#calculators" class="btn secondary" 
+             onclick="sendGoal('scenario_savings_click'); document.querySelector('[data-tab=savings]').click()">Рассчитать накопления</a>
+
           </div>
 
           <div class="info-card">
@@ -125,7 +129,9 @@
               Введите доход и расходы, чтобы увидеть свободный остаток,
               долю расходов и потенциал для накоплений.
             </p>
-            <a href="#calculators" class="btn secondary" onclick="document.querySelector('[data-tab=budget]').click()">Проверить бюджет</a>
+            <a href="#calculators" class="btn secondary" 
+              onclick="sendGoal('scenario_budget_click'); document.querySelector('[data-tab=budget]').click()">Проверить бюджет</a>
+
           </div>
 
           <div class="info-card">
@@ -134,7 +140,9 @@
               Рассчитайте, какой запас денег нужен на 3–6 месяцев расходов,
               сколько ещё нужно накопить и за какой срок это возможно.
             </p>
-            <a href="#calculators" class="btn secondary" onclick="document.querySelector('[data-tab=cushion]').click()">Рассчитать подушку</a>
+            <a href="#calculators" class="btn secondary"
+            onclick="sendGoal('scenario_cushion_click'); document.querySelector('[data-tab=cushion]').click()">Рассчитать подушку</a>
+
           </div>
         </div>
       </div>
@@ -1048,7 +1056,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v0.7.1</span>
+    <span>© 2026 CalcPilot · v0.7.2</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

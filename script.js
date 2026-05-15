@@ -1,3 +1,16 @@
+const METRIKA_COUNTER_ID = 109235181;
+
+function sendGoal(goalName) {
+  try {
+    if (typeof ym === "function") {
+      ym(METRIKA_COUNTER_ID, "reachGoal", goalName);
+      console.log("Цель отправлена в Метрику:", goalName);
+    }
+  } catch (error) {
+    console.warn("Не удалось отправить цель в Метрику:", goalName, error);
+  }
+}
+
 const rub = new Intl.NumberFormat("ru-RU", {
   style: "currency",
   currency: "RUB",
@@ -68,6 +81,7 @@ function calculateCredit() {
   }
 
   document.getElementById("creditHint").textContent = hint;
+  sendGoal("credit_calculate");
 }
 
 function calculateSavings() {
@@ -111,6 +125,7 @@ function calculateSavings() {
   }
 
   document.getElementById("savingsHint").textContent = hint;
+  sendGoal("savings_calculate");
 }
 
 function calculateBudget() {
@@ -146,6 +161,8 @@ function calculateBudget() {
   }
 
   document.getElementById("budgetHint").textContent = hint;
+  sendGoal("budget_calculate");
+
 }
 
 function askAssistant() {
@@ -155,6 +172,7 @@ function askAssistant() {
   if (!question) return;
 
   addMessage(question, "user");
+  sendGoal("assistant_question");
 
   const answer = generateAssistantAnswer(question);
   setTimeout(() => {

@@ -616,7 +616,7 @@ input:focus {
 
 /* Исправление интервалов в блоке финансовой подушки */
 #cushion-guide {
-  padding-top: 42px;
+  padding-top: 24px;
 }
 
 #cushion-guide .section-head {

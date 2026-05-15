@@ -258,9 +258,20 @@
               <p class="hint" id="creditHint">
                 Нажмите «Рассчитать», чтобы увидеть результат.
               </p>
+              <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Если кредит уже оформлен, проверьте, сколько можно сэкономить при досрочном погашении.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('credit_next_early_click'); document.querySelector('[data-tab=early]').click()">
+    Рассчитать досрочное погашение
+  </button>
+</div>
             </div>
           </div>
         </div>
+        
         <div class="calculator" id="early">
   <div class="calc-grid">
     <div class="calc-form">
@@ -325,6 +336,13 @@
       <p class="hint" id="earlyHint">
         Нажмите «Рассчитать», чтобы увидеть результат.
       </p>
+      <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Сравните оба варианта: уменьшение платежа снижает ежемесячную нагрузку,
+    а сокращение срока часто помогает сильнее сэкономить на процентах.
+  </p>
+</div>
     </div>
   </div>
 </div>
@@ -388,6 +406,17 @@
       <p class="hint" id="mortgageHint">
         Нажмите «Рассчитать», чтобы увидеть результат.
       </p>
+      <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Перед ипотекой полезно проверить личный бюджет и понять,
+    останется ли запас после ежемесячного платежа.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('mortgage_next_budget_click'); document.querySelector('[data-tab=budget]').click()">
+    Проверить бюджет
+  </button>
+</div>
     </div>
   </div>
 </div>
@@ -434,6 +463,17 @@
               <p class="hint" id="savingsHint">
                 Нажмите «Рассчитать», чтобы увидеть результат.
               </p>
+              <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Если цель долгосрочная, можно сравнить обычное накопление с вкладом
+    и посмотреть примерный процентный доход.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('savings_next_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
+    Рассчитать вклад
+  </button>
+</div>
             </div>
           </div>
         </div>
@@ -500,6 +540,17 @@
       <p class="hint" id="depositHint">
         Нажмите «Рассчитать», чтобы увидеть результат.
       </p>
+      <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Сравните разные сроки, ставки и капитализацию. Если вклад нужен под конкретную цель,
+    проверьте срок её достижения в калькуляторе накоплений.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('deposit_next_savings_click'); document.querySelector('[data-tab=savings]').click()">
+    Рассчитать накопления
+  </button>
+</div>
     </div>
   </div>
 </div>
@@ -573,6 +624,17 @@
       <p class="hint" id="pensionHint">
         Нажмите «Рассчитать», чтобы увидеть результат.
       </p>
+      <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Если до пенсионной цели есть разрыв, попробуйте увеличить ежемесячное пополнение
+    или рассмотреть вклад как один из консервативных инструментов.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('pension_next_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
+    Рассчитать вклад
+  </button>
+</div>
     </div>
   </div>
 </div>
@@ -619,6 +681,17 @@
               <p class="hint" id="budgetHint">
                 Нажмите «Рассчитать», чтобы увидеть результат.
               </p>
+              <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Если есть свободный остаток, первым шагом часто становится финансовая подушка
+    на 3–6 месяцев расходов.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('budget_next_cushion_click'); document.querySelector('[data-tab=cushion]').click()">
+    Рассчитать подушку
+  </button>
+</div>
             </div>
           </div>
         </div>
@@ -676,6 +749,17 @@
               <p class="hint" id="cushionHint">
                 Нажмите «Рассчитать», чтобы увидеть результат.
               </p>
+              <div class="next-step-card">
+  <strong>Что дальше?</strong>
+  <p>
+    Если подушка ещё не собрана, проверьте бюджет и найдите комфортную сумму,
+    которую можно откладывать каждый месяц.
+  </p>
+  <button type="button" class="btn secondary"
+    onclick="sendGoal('cushion_next_budget_click'); document.querySelector('[data-tab=budget]').click()">
+    Проверить бюджет
+  </button>
+</div>
             </div>
           </div>
         </div>

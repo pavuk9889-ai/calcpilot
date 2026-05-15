@@ -30,10 +30,10 @@
 
   <header class="header">
     <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-icon">✦</span>
-        <span>CalcPilot</span>
-      </div>
+     <a href="#top" class="logo" aria-label="CalcPilot — в начало страницы">
+  <span class="logo-icon">✦</span>
+  <span>CalcPilot</span>
+</a>
 
      <nav class="nav">
   <a href="#calculators">Калькуляторы</a>
@@ -48,10 +48,10 @@
 
   <main>
 
-    <section class="hero">
+    <section id="top" class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v1.0</div>
+          <div class="badge">MVP-версия v1.0.1</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
@@ -943,21 +943,24 @@
         <div class="section-head">
           <h2>ИИ-помощник CalcPilot</h2>
           <p>
-            Сейчас помощник работает в демо-режиме и отвечает по простым сценариям:
-            кредиты, накопления, бюджет и базовые финансовые вопросы.
-            Позже сюда можно подключить полноценный ИИ через API.
+            <p>
+  Сейчас помощник работает в демо-режиме и отвечает по простым сценариям:
+  кредиты, ипотека, досрочное погашение, накопления, пенсия,
+  бюджет, финансовая подушка и базовые финансовые вопросы.
+  Позже сюда можно подключить полноценный ИИ через API.
+</p>
           </p>
         </div>
 
         <div class="assistant-box">
           <div class="chat-window" id="chatWindow">
-            <div class="message bot">
-              Привет! Я помощник CalcPilot. Могу подсказать, с чего начать: кредит, накопления или бюджет.
-            </div>
+           <div class="message bot">
+  Привет! Я помощник CalcPilot. Могу подсказать, с чего начать: кредит, ипотека, досрочное погашение, пенсия, накопления, бюджет или финансовая подушка.
+</div>
           </div>
 
           <div class="chat-input">
-            <input type="text" id="userQuestion" placeholder="Например: Как быстрее накопить 300 000 ₽?" />
+            <input type="text" id="userQuestion" placeholder="Например: Как рассчитать ипотеку или пенсионный план?" />
             <button class="btn primary" onclick="askAssistant()">Спросить</button>
           </div>
         </div>
@@ -1312,7 +1315,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v1.0</span>
+    <span>© 2026 CalcPilot · v1.0.1</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>

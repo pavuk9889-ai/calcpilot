@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalcPilot — умные калькуляторы для жизни</title>
+  <meta name="description" content="CalcPilot — сервис с умными калькуляторами для жизни: финансы, кредиты, накопления, бюджет и ИИ-помощник." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <span>CalcPilot</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#calculators">Калькуляторы</a>
+        <a href="#assistant">ИИ-помощник</a>
+        <a href="#monetization">Возможности</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="badge">MVP-версия</div>
+          <h1>Умные калькуляторы для жизни</h1>
+          <p>
+            CalcPilot помогает быстро считать кредиты, накопления, бюджет и принимать
+            более понятные финансовые решения.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#calculators" class="btn primary">Попробовать калькуляторы</a>
+            <a href="#assistant" class="btn secondary">Спросить помощника</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Быстрый расчёт</h3>
+          <p class="muted">Выберите калькулятор и получите результат за несколько секунд.</p>
+
+          <div class="mini-stats">
+            <div>
+              <strong>3</strong>
+              <span>калькулятора</span>
+            </div>
+            <div>
+              <strong>0 ₽</strong>
+              <span>стоимость запуска</span>
+            </div>
+            <div>
+              <strong>1 день</strong>
+              <span>до первого MVP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculators" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Калькуляторы</h2>
+          <p>Первые инструменты для MVP: кредит, накопления и личный бюджет.</p>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="credit">Кредит</button>
+          <button class="tab" data-tab="savings">Накопления</button>
+          <button class="tab" data-tab="budget">Бюджет</button>
+        </div>
+
+        <div class="calculator active" id="credit">
+          <div class="calc-grid">
+            <div class="calc-form">
+              <h3>Кредитный калькулятор</h3>
+
+              <label>
+                Сумма кредита, ₽
+                <input type="number" id="creditAmount" value="500000" />
+              </label>
+
+              <label>
+                Ставка, % годовых
+                <input type="number" id="creditRate" value="18" />
+              </label>
+
+              <label>
+                Срок, месяцев
+                <input type="number" id="creditMonths" value="36" />
+              </label>
+
+              <button class="btn primary full" onclick="calculateCredit()">Рассчитать</button>
+            </div>
+
+            <div class="result-card">
+              <h3>Результат</h3>
+              <p>Ежемесячный платёж:</p>
+              <div class="big-result" id="creditPayment">—</div>
+
+              <div class="result-list">
+                <div>
+                  <span>Общая выплата</span>
+                  <strong id="creditTotal">—</strong>
+                </div>
+                <div>
+                  <span>Переплата</span>
+                  <strong id="creditOverpay">—</strong>
+                </div>
+              </div>
+
+              <p class="hint" id="creditHint">
+                Нажмите «Рассчитать», чтобы увидеть результат.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator" id="savings">
+          <div class="calc-grid">
+            <div class="calc-form">
+              <h3>Калькулятор накоплений</h3>
+
+              <label>
+                Цель, ₽
+                <input type="number" id="savingsGoal" value="300000" />
+              </label>
+
+              <label>
+                Уже накоплено, ₽
+                <input type="number" id="savingsCurrent" value="50000" />
+              </label>
+
+              <label>
+                Ежемесячно откладывать, ₽
+                <input type="number" id="savingsMonthly" value="25000" />
+              </label>
+
+              <button class="btn primary full" onclick="calculateSavings()">Рассчитать</button>
+            </div>
+
+            <div class="result-card">
+              <h3>Результат</h3>
+              <p>До цели осталось:</p>
+              <div class="big-result" id="savingsMonths">—</div>
+
+              <div class="result-list">
+                <div>
+                  <span>Нужно накопить ещё</span>
+                  <strong id="savingsLeft">—</strong>
+                </div>
+                <div>
+                  <span>Примерная дата достижения</span>
+                  <strong id="savingsDate">—</strong>
+                </div>
+              </div>
+
+              <p class="hint" id="savingsHint">
+                Нажмите «Рассчитать», чтобы увидеть результат.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="calculator" id="budget">
+          <div class="calc-grid">
+            <div class="calc-form">
+              <h3>Калькулятор личного бюджета</h3>
+
+              <label>
+                Доход в месяц, ₽
+                <input type="number" id="budgetIncome" value="100000" />
+              </label>
+
+              <label>
+                Обязательные расходы, ₽
+                <input type="number" id="budgetFixed" value="50000" />
+              </label>
+
+              <label>
+                Переменные расходы, ₽
+                <input type="number" id="budgetVariable" value="25000" />
+              </label>
+
+              <button class="btn primary full" onclick="calculateBudget()">Рассчитать</button>
+            </div>
+
+            <div class="result-card">
+              <h3>Результат</h3>
+              <p>Свободный остаток:</p>
+              <div class="big-result" id="budgetFree">—</div>
+
+              <div class="result-list">
+                <div>
+                  <span>Доля расходов</span>
+                  <strong id="budgetSpendRate">—</strong>
+                </div>
+                <div>
+                  <span>Потенциал накоплений</span>
+                  <strong id="budgetSaveRate">—</strong>
+                </div>
+              </div>
+
+              <p class="hint" id="budgetHint">
+                Нажмите «Рассчитать», чтобы увидеть результат.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="assistant" class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>ИИ-помощник CalcPilot</h2>
+          <p>
+            Пока это демо-версия помощника. Позже сюда можно подключить полноценный ИИ через API.
+          </p>
+        </div>
+
+        <div class="assistant-box">
+          <div class="chat-window" id="chatWindow">
+            <div class="message bot">
+              Привет! Я помощник CalcPilot. Могу подсказать, с чего начать: кредит, накопления или бюджет.
+            </div>
+          </div>
+
+          <div class="chat-input">
+            <input type="text" id="userQuestion" placeholder="Например: Как быстрее накопить 300 000 ₽?" />
+            <button class="btn primary" onclick="askAssistant()">Спросить</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="monetization" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Будущая монетизация</h2>
+          <p>В MVP мы закладываем основу под несколько источников дохода.</p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Партнёрские офферы</h3>
+            <p>
+              Банки, кредиты, вклады, страхование, инвестиционные продукты и другие партнёрские предложения.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Реклама</h3>
+            <p>
+              В будущем можно подключить РСЯ или другие рекламные сети, когда появится стабильный трафик.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Подписка</h3>
+            <p>
+              Платный доступ к расширенным калькуляторам, сохранению расчётов и персональным рекомендациям.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ad-placeholder-section">
+      <div class="container">
+        <div class="ad-placeholder">
+          Здесь в будущем может быть рекламный блок или партнёрское предложение
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 CalcPilot</span>
+      <span>Умные калькуляторы для жизни</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

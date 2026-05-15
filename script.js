@@ -202,21 +202,37 @@ calculateSavings();
 calculateBudget();
 
 function acceptCookies() {
-  localStorage.setItem("calcpilotCookiesAccepted", "true");
-
   const banner = document.getElementById("cookieBanner");
+
   if (banner) {
     banner.classList.remove("show");
+    banner.style.display = "none";
+  }
+
+  try {
+    localStorage.setItem("calcpilotCookiesAccepted", "true");
+  } catch (error) {
+    console.warn("Не удалось сохранить согласие cookies:", error);
   }
 }
 
 function initCookieBanner() {
-  const accepted = localStorage.getItem("calcpilotCookiesAccepted");
   const banner = document.getElementById("cookieBanner");
 
-  if (!accepted && banner) {
+  if (!banner) return;
+
+  let accepted = false;
+
+  try {
+    accepted = localStorage.getItem("calcpilotCookiesAccepted") === "true";
+  } catch (error) {
+    accepted = false;
+  }
+
+  if (!accepted) {
     banner.classList.add("show");
   }
 }
 
 initCookieBanner();
+

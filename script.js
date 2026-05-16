@@ -629,6 +629,19 @@ function initCookieBanner() {
   }
 }
 
+function openCalculatorFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const calc = params.get("calc");
+
+  if (!calc) return;
+
+  const tab = document.querySelector(`[data-tab="${calc}"]`);
+
+  if (tab) {
+    tab.click();
+  }
+}
+
 /* Делаем функции доступными для кнопок onclick */
 window.calculateCredit = calculateCredit;
 window.calculateEarlyRepayment = calculateEarlyRepayment;
@@ -641,19 +654,21 @@ window.calculateCushion = calculateCushion;
 window.askAssistant = askAssistant;
 window.acceptCookies = acceptCookies;
 window.sendGoal = sendGoal;
+window.openCalculatorFromUrl = openCalculatorFromUrl;
 
 /* Стартовые расчёты без отправки целей в Метрику */
 try {
   calculateCredit(false);
-calculateEarlyRepayment(false);
-calculateMortgage(false);
-calculateSavings(false);
-calculateDeposit(false);
-calculatePension(false);
-calculateBudget(false);
-calculateCushion(false);
+  calculateEarlyRepayment(false);
+  calculateMortgage(false);
+  calculateSavings(false);
+  calculateDeposit(false);
+  calculatePension(false);
+  calculateBudget(false);
+  calculateCushion(false);
 } catch (error) {
   console.warn("Ошибка при стартовом расчёте:", error);
 }
 
 initCookieBanner();
+openCalculatorFromUrl();

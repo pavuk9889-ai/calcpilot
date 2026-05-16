@@ -1,0 +1,5 @@
+Contact: mailto:geometry9889@gmail.com
+Expires: 2027-05-16T23:59:00+00:00
+Preferred-Languages: ru, en
+Canonical: https://calcpilot.ru/.well-known/security.txt
+Policy: https://calcpilot.ru/#legal

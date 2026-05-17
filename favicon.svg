@@ -1,36 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="10" y1="8" x2="54" y2="58" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#3B82F6"/>
+      <stop offset="0.52" stop-color="#2563EB"/>
       <stop offset="1" stop-color="#172554"/>
     </linearGradient>
 
-    <linearGradient id="arrow" x1="40" y1="40" x2="55" y2="24" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#10B981"/>
-      <stop offset="1" stop-color="#6EE7B7"/>
+    <linearGradient id="inner" x1="14" y1="10" x2="52" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#60A5FA" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#0F172A" stop-opacity="0.18"/>
     </linearGradient>
+
+    <linearGradient id="arrow" x1="40" y1="40" x2="53" y2="25" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#10B981"/>
+      <stop offset="1" stop-color="#7EF3C6"/>
+    </linearGradient>
+
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.28"/>
+    </filter>
+
+    <filter id="letterShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#0F172A" flood-opacity="0.20"/>
+    </filter>
   </defs>
 
-  <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#bg)"/>
+  <!-- Background -->
+  <rect x="5" y="5" width="54" height="54" rx="15" fill="url(#bg)" filter="url(#softShadow)"/>
 
+  <!-- Inner depth -->
+  <rect x="8" y="8" width="48" height="48" rx="13" fill="url(#inner)"/>
+
+  <!-- Letter C -->
   <path
-    d="M43 22.5C40.2 19.7 36.2 18 31.8 18C23.2 18 16.5 24.6 16.5 32.5C16.5 40.4 23.2 47 31.8 47C36.2 47 40.2 45.3 43 42.5"
+    d="M43.2 21.4C40.3 18.6 36.4 17 32 17C23.1 17 16 23.7 16 32C16 40.3 23.1 47 32 47C36.4 47 40.3 45.4 43.2 42.6"
     fill="none"
     stroke="#FFFFFF"
-    stroke-width="8.5"
+    stroke-width="8.8"
     stroke-linecap="round"
+    filter="url(#letterShadow)"
   />
 
-  <path
-    d="M39.5 39.5L49.5 29.5"
-    fill="none"
-    stroke="url(#arrow)"
-    stroke-width="4.2"
-    stroke-linecap="round"
-  />
+  <!-- Small arrow -->
+  <g filter="url(#letterShadow)">
+    <path
+      d="M40.2 38.8L49.2 29.8"
+      fill="none"
+      stroke="url(#arrow)"
+      stroke-width="4.6"
+      stroke-linecap="round"
+    />
 
-  <path
-    d="M48.5 24.5L55 23L53.5 29.5L51.4 27.4L45.8 33L43.9 31.1L49.5 25.5Z"
-    fill="url(#arrow)"
-  />
+    <path
+      d="M48.2 25.2L55 23.6L53.4 30.4L51.3 28.3L46.1 33.5L44.7 32.1L49.9 26.9Z"
+      fill="url(#arrow)"
+    />
+  </g>
 </svg>

@@ -144,6 +144,7 @@ if (trackGoal) {
 
   trackCalculatorResult("credit");
 }
+}
 
 function getAnnuityPayment(amount, annualRate, months) {
   const monthlyRate = annualRate / 100 / 12;

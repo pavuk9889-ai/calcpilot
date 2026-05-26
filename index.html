@@ -578,10 +578,13 @@
     Перед ипотекой полезно проверить личный бюджет и понять,
     останется ли запас после ежемесячного платежа.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('mortgage_next_budget_click'); document.querySelector('[data-tab=budget]').click()">
-    Проверить бюджет
-  </button>
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="budget"
+   onclick="document.querySelector('[data-tab=budget]').click()">
+  Проверить бюджет
+</a>
 </div>
     </div>
   </div>
@@ -635,10 +638,13 @@
     Если цель долгосрочная, можно сравнить обычное накопление с вкладом
     и посмотреть примерный процентный доход.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('savings_next_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
-    Рассчитать вклад
-  </button>
+ <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="deposit"
+   onclick="document.querySelector('[data-tab=deposit]').click()">
+  Рассчитать вклад
+</a>
 </div>
             </div>
           </div>
@@ -719,7 +725,6 @@
    onclick="document.querySelector('[data-tab=savings]').click()">
   Рассчитать накопления
 </a>
-  </button>
 </div>
     </div>
   </div>
@@ -807,7 +812,6 @@
    onclick="document.querySelector('[data-tab=deposit]').click()">
   Рассчитать вклад
 </a>
-  </button>
 </div>
     </div>
   </div>
@@ -868,7 +872,6 @@
    onclick="document.querySelector('[data-tab=cushion]').click()">
   Рассчитать подушку
 </a>
-  </button>
 </div>
             </div>
           </div>
@@ -933,10 +936,13 @@
     Если подушка ещё не собрана, проверьте бюджет и найдите комфортную сумму,
     которую можно откладывать каждый месяц.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('cushion_next_budget_click'); document.querySelector('[data-tab=budget]').click()">
-    Проверить бюджет
-  </button>
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="budget"
+   onclick="document.querySelector('[data-tab=budget]').click()">
+  Проверить бюджет
+</a>
 </div>
             </div>
           </div>

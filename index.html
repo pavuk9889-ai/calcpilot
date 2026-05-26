@@ -70,7 +70,7 @@
     <section id="top" class="hero">
       <div class="container hero-inner">
         <div class="hero-content">
-          <div class="badge">MVP-версия v1.3</div>
+          <div class="badge">MVP-версия v1.4</div>
 
           <h1>Умные калькуляторы для повседневных финансовых решений</h1>
 
@@ -243,9 +243,12 @@
         <p>
           Рассчитайте примерный ежемесячный платёж, общую сумму выплат и переплату по кредиту.
         </p>
-        <a href="/credit-calculator/" class="btn secondary">
-          Подробнее
-        </a>
+       <a href="/credit-calculator/"
+   class="btn secondary"
+   data-goal="seo_page_click"
+   data-calculator="credit">
+  Подробнее
+</a>
       </div>
 
       <div class="info-card">
@@ -253,9 +256,12 @@
         <p>
           Оцените платёж по ипотеке, сумму кредита, переплату и нагрузку на семейный доход.
         </p>
-        <a href="/mortgage-calculator/" class="btn secondary">
-          Подробнее
-        </a>
+        <a href="/mortgage-calculator/"
+   class="btn secondary"
+   data-goal="seo_page_click"
+   data-calculator="mortgage">
+  Подробнее
+</a>
       </div>
 
       <div class="info-card">
@@ -263,9 +269,12 @@
         <p>
           Посчитайте итоговую сумму, пополнения, начисленные проценты и примерную доходность по вкладу.
         </p>
-        <a href="/deposit-calculator/" class="btn secondary">
-          Подробнее
-        </a>
+      <a href="/deposit-calculator/"
+   class="btn secondary"
+   data-goal="seo_page_click"
+   data-calculator="deposit">
+  Подробнее
+</a>
       </div>
     </div>
   </div>
@@ -283,14 +292,61 @@
         </div>
 
 <div class="tabs">
-  <button class="tab active" data-tab="credit">Кредит</button>
-<button class="tab" data-tab="early">Досрочное погашение</button>
-<button class="tab" data-tab="mortgage">Ипотека</button>
-<button class="tab" data-tab="savings">Накопления</button>
-<button class="tab" data-tab="deposit">Вклад</button>
-<button class="tab" data-tab="pension">Пенсия</button>
-<button class="tab" data-tab="budget">Бюджет</button>
-<button class="tab" data-tab="cushion">Финансовая подушка</button>
+  <button class="tab active"
+          data-tab="credit"
+          data-goal="calculator_card_click"
+          data-calculator="credit">
+    Кредит
+  </button>
+
+  <button class="tab"
+          data-tab="early"
+          data-goal="calculator_card_click"
+          data-calculator="early_repayment">
+    Досрочное погашение
+  </button>
+
+  <button class="tab"
+          data-tab="mortgage"
+          data-goal="calculator_card_click"
+          data-calculator="mortgage">
+    Ипотека
+  </button>
+
+  <button class="tab"
+          data-tab="savings"
+          data-goal="calculator_card_click"
+          data-calculator="savings">
+    Накопления
+  </button>
+
+  <button class="tab"
+          data-tab="deposit"
+          data-goal="calculator_card_click"
+          data-calculator="deposit">
+    Вклад
+  </button>
+
+  <button class="tab"
+          data-tab="pension"
+          data-goal="calculator_card_click"
+          data-calculator="pension">
+    Пенсия
+  </button>
+
+  <button class="tab"
+          data-tab="budget"
+          data-goal="calculator_card_click"
+          data-calculator="budget">
+    Бюджет
+  </button>
+
+  <button class="tab"
+          data-tab="cushion"
+          data-goal="calculator_card_click"
+          data-calculator="cushion">
+    Финансовая подушка
+  </button>
 </div>
 
 
@@ -1224,7 +1280,11 @@
 
           <div class="chat-input">
             <input type="text" id="userQuestion" placeholder="Например: Как рассчитать вклад или ипотеку?" />
-            <button class="btn primary" onclick="askAssistant()">Спросить</button>
+            <button class="btn primary"
+        data-goal="ai_assistant_click"
+        onclick="askAssistant()">
+  Спросить
+</button>
           </div>
         </div>
       </div>
@@ -1575,7 +1635,7 @@
 
 <footer class="footer">
   <div class="container footer-inner">
-    <span>© 2026 CalcPilot · v1.3</span>
+    <span>© 2026 CalcPilot · v1.4</span>
 
     <div class="footer-links">
       <a href="#legal">Правовая информация</a>
@@ -1593,6 +1653,6 @@
     </div>
     <button class="btn primary" onclick="acceptCookies()">Понятно</button>
   </div>
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
 </body>
 </html>

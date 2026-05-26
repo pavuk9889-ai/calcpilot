@@ -1,16 +1,54 @@
 const METRIKA_COUNTER_ID = 109235181;
 
-function sendGoal(goalName) {
+function sendGoal(goalName, params = {}) {
   try {
+    if (!goalName) return;
+
+    const goalParams = {
+      url: window.location.pathname,
+      ...params
+    };
+
     if (typeof ym === "function") {
-      ym(METRIKA_COUNTER_ID, "reachGoal", goalName);
-      console.log("Цель отправлена в Метрику:", goalName);
+      ym(METRIKA_COUNTER_ID, "reachGoal", goalName, goalParams);
+      console.log("Цель отправлена в Метрику:", goalName, goalParams);
     } else {
-      console.warn("Яндекс.Метрика пока недоступна, цель не отправлена:", goalName);
+      console.warn("Яндекс.Метрика пока недоступна, цель не отправлена:", goalName, goalParams);
     }
   } catch (error) {
     console.warn("Не удалось отправить цель в Метрику:", goalName, error);
   }
+}
+
+function trackCalculatorResult(calculatorName) {
+  sendGoal("calculator_submit", {
+    calculator: calculatorName
+  });
+
+  sendGoal("calculator_result_view", {
+    calculator: calculatorName
+  });
+}
+
+function initGoalTracking() {
+  document.querySelectorAll("[data-goal]").forEach((element) => {
+    element.addEventListener("click", () => {
+      const goal = element.dataset.goal;
+      const calculator = element.dataset.calculator || "";
+      const scenario = element.dataset.scenario || "";
+
+      sendGoal(goal, {
+        calculator,
+        scenario
+      });
+    });
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initGoalTracking);
+} else {
+  initGoalTracking();
 }
 
 const rub = new Intl.NumberFormat("ru-RU", {
@@ -99,10 +137,14 @@ function calculateCredit(trackGoal = true) {
 
   setText("creditHint", hint);
 
-  if (trackGoal) {
-    sendGoal("credit_calculate");
-  }
+if (trackGoal) {
+  sendGoal("credit_calculate", {
+    calculator: "credit"
+  });
+
+  trackCalculatorResult("credit");
 }
+
 function getAnnuityPayment(amount, annualRate, months) {
   const monthlyRate = annualRate / 100 / 12;
 
@@ -157,9 +199,13 @@ function calculateEarlyRepayment(trackGoal = true) {
     setText("earlyTermSaving", "—");
     setText("earlyHint", "Сумма досрочного погашения равна или больше остатка долга. Такой платёж может полностью закрыть кредит.");
 
-    if (trackGoal) {
-      sendGoal("early_repayment_calculate");
-    }
+  if (trackGoal) {
+  sendGoal("early_repayment_calculate", {
+    calculator: "early_repayment"
+  });
+
+  trackCalculatorResult("early_repayment");
+}
 
     return;
   }
@@ -199,9 +245,13 @@ function calculateEarlyRepayment(trackGoal = true) {
 
   setText("earlyHint", hint);
 
-  if (trackGoal) {
-    sendGoal("early_repayment_calculate");
-  }
+if (trackGoal) {
+  sendGoal("early_repayment_calculate", {
+    calculator: "early_repayment"
+  });
+
+  trackCalculatorResult("early_repayment");
+}
 }
 /* Ипотечный калькулятор */
 function calculateMortgage(trackGoal = true) {
@@ -253,9 +303,13 @@ function calculateMortgage(trackGoal = true) {
 
   setText("mortgageHint", hint);
 
-  if (trackGoal) {
-    sendGoal("mortgage_calculate");
-  }
+if (trackGoal) {
+  sendGoal("mortgage_calculate", {
+    calculator: "mortgage"
+  });
+
+  trackCalculatorResult("mortgage");
+}
 }
 
 /* Калькулятор накоплений */
@@ -298,9 +352,13 @@ function calculateSavings(trackGoal = true) {
 
   setText("savingsHint", hint);
 
-  if (trackGoal) {
-    sendGoal("savings_calculate");
-  }
+ if (trackGoal) {
+  sendGoal("savings_calculate", {
+    calculator: "savings"
+  });
+
+  trackCalculatorResult("savings");
+}
 }
 
 /* Калькулятор вкладов */
@@ -374,8 +432,12 @@ function calculateDeposit(trackGoal = true) {
   setText("depositHint", hint);
 
   if (trackGoal) {
-    sendGoal("deposit_calculate");
-  }
+  sendGoal("deposit_calculate", {
+    calculator: "deposit"
+  });
+
+  trackCalculatorResult("deposit");
+}
 }
 
 /* Пенсионный калькулятор */
@@ -436,8 +498,12 @@ function calculatePension(trackGoal = true) {
   setText("pensionHint", hint);
 
   if (trackGoal) {
-    sendGoal("pension_calculate");
-  }
+  sendGoal("pension_calculate", {
+    calculator: "pension"
+  });
+
+  trackCalculatorResult("pension");
+}
 }
 
 /* Калькулятор личного бюджета */
@@ -476,8 +542,12 @@ function calculateBudget(trackGoal = true) {
   setText("budgetHint", hint);
 
   if (trackGoal) {
-    sendGoal("budget_calculate");
-  }
+  sendGoal("budget_calculate", {
+    calculator: "budget"
+  });
+
+  trackCalculatorResult("budget");
+}
 }
 
 /* Калькулятор финансовой подушки */
@@ -516,9 +586,14 @@ function calculateCushion(trackGoal = true) {
 
   setText("cushionHint", hint);
 
-  if (trackGoal) {
-    sendGoal("cushion_calculate");
-  }
+ if (trackGoal) {
+  sendGoal("cushion_calculate", {
+    calculator: "cushion"
+  });
+
+  trackCalculatorResult("cushion");
+}
+
 }
 
 /* ИИ-помощник */
@@ -531,7 +606,13 @@ function askAssistant() {
   if (!question) return;
 
   addMessage(question, "user");
-  sendGoal("assistant_question");
+  sendGoal("assistant_question", {
+  source: "assistant"
+});
+
+sendGoal("ai_assistant_click", {
+  source: "assistant"
+});
 
   const answer = generateAssistantAnswer(question);
 
@@ -657,18 +738,21 @@ window.sendGoal = sendGoal;
 window.openCalculatorFromUrl = openCalculatorFromUrl;
 
 /* Стартовые расчёты без отправки целей в Метрику */
-try {
-  calculateCredit(false);
-  calculateEarlyRepayment(false);
-  calculateMortgage(false);
-  calculateSavings(false);
-  calculateDeposit(false);
-  calculatePension(false);
-  calculateBudget(false);
-  calculateCushion(false);
-} catch (error) {
-  console.warn("Ошибка при стартовом расчёте:", error);
+if (document.getElementById("calculators")) {
+  try {
+    calculateCredit(false);
+    calculateEarlyRepayment(false);
+    calculateMortgage(false);
+    calculateSavings(false);
+    calculateDeposit(false);
+    calculatePension(false);
+    calculateBudget(false);
+    calculateCushion(false);
+  } catch (error) {
+    console.warn("Ошибка при стартовом расчёте:", error);
+  }
+
+  openCalculatorFromUrl();
 }
 
 initCookieBanner();
-openCalculatorFromUrl();

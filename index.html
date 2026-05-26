@@ -82,8 +82,12 @@
           </p>
 
           <div class="hero-actions">
-            <a href="#calculators" class="btn primary">Начать расчёт</a>
-            <a href="#assistant" class="btn secondary">Спросить помощника</a>
+            <a href="#calculators" class="btn primary" data-goal="start_calculation">
+  Начать расчёт
+</a>
+            <a href="#assistant" class="btn secondary" data-goal="ai_assistant_click">
+  Спросить помощника
+</a>
           </div>
         </div>
 
@@ -127,8 +131,13 @@
               Рассчитайте примерный ежемесячный платёж, общую сумму выплат и переплату.
               Это поможет заранее понять нагрузку на бюджет.
             </p>
-           <a href="#calculators" class="btn secondary" 
-             onclick="sendGoal('scenario_credit_click'); document.querySelector('[data-tab=credit]').click()">Рассчитать кредит</a>
+           <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="credit"
+   onclick="document.querySelector('[data-tab=credit]').click()">
+  Рассчитать кредит
+</a>
 
           </div>
           <div class="info-card">
@@ -147,9 +156,13 @@
     переплату и нагрузку на доход. Это поможет заранее понять,
     насколько комфортным будет платёж.
   </p>
-  <a href="#calculators" class="btn secondary"
-     onclick="sendGoal('scenario_mortgage_click'); document.querySelector('[data-tab=mortgage]').click()">
-    Рассчитать ипотеку
+<a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="mortgage"
+   onclick="document.querySelector('[data-tab=mortgage]').click()">
+  Рассчитать ипотеку
+</a>
   </a>
 </div>
 
@@ -181,10 +194,13 @@
     Оцените, сколько капитала может накопиться к пенсии, хватит ли его
     на желаемую ежемесячную сумму и какой разрыв может остаться до цели.
   </p>
-  <a href="#calculators" class="btn secondary"
-     onclick="sendGoal('scenario_pension_click'); document.querySelector('[data-tab=pension]').click()">
-    Рассчитать пенсионный план
-  </a>
+ <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="pension"
+   onclick="document.querySelector('[data-tab=pension]').click()">
+  Рассчитать пенсионный план
+</a>
 </div>
 
           <div class="info-card">
@@ -325,9 +341,13 @@
   <p>
     Если кредит уже оформлен, проверьте, сколько можно сэкономить при досрочном погашении.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('credit_next_early_click'); document.querySelector('[data-tab=early]').click()">
-    Рассчитать досрочное погашение
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="early_repayment"
+   onclick="document.querySelector('[data-tab=early]').click()">
+  Рассчитать досрочное погашение
+</a>
   </button>
 </div>
             </div>
@@ -404,9 +424,13 @@
     Сравните оба варианта: уменьшение платежа снижает ежемесячную нагрузку,
     а сокращение срока часто помогает сильнее сэкономить на процентах.
   </p>
-        <button type="button" class="btn secondary"
-  onclick="sendGoal('early_next_budget_click'); document.querySelector('[data-tab=budget]').click()">
+       <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="budget"
+   onclick="document.querySelector('[data-tab=budget]').click()">
   Проверить бюджет
+</a>
 </button>
 </div>
     </div>
@@ -612,9 +636,13 @@
     Сравните разные сроки, ставки и капитализацию. Если вклад нужен под конкретную цель,
     проверьте срок её достижения в калькуляторе накоплений.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('deposit_next_savings_click'); document.querySelector('[data-tab=savings]').click()">
-    Рассчитать накопления
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="savings"
+   onclick="document.querySelector('[data-tab=savings]').click()">
+  Рассчитать накопления
+</a>
   </button>
 </div>
     </div>
@@ -696,9 +724,13 @@
     Если до пенсионной цели есть разрыв, попробуйте увеличить ежемесячное пополнение
     или рассмотреть вклад как один из консервативных инструментов.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('pension_next_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
-    Рассчитать вклад
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="deposit"
+   onclick="document.querySelector('[data-tab=deposit]').click()">
+  Рассчитать вклад
+</a>
   </button>
 </div>
     </div>
@@ -753,9 +785,13 @@
     Если есть свободный остаток, первым шагом часто становится финансовая подушка
     на 3–6 месяцев расходов.
   </p>
-  <button type="button" class="btn secondary"
-    onclick="sendGoal('budget_next_cushion_click'); document.querySelector('[data-tab=cushion]').click()">
-    Рассчитать подушку
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="cushion"
+   onclick="document.querySelector('[data-tab=cushion]').click()">
+  Рассчитать подушку
+</a>
   </button>
 </div>
             </div>

@@ -146,8 +146,13 @@
     Сравните два варианта досрочного погашения: уменьшить ежемесячный платёж
     или сократить срок кредита. Калькулятор покажет примерную экономию на процентах.
   </p>
-  <a href="#calculators" class="btn secondary"
-     onclick="sendGoal('scenario_early_click'); document.querySelector('[data-tab=early]').click()">Рассчитать досрочное погашение</a>
+  <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="early_repayment"
+   onclick="document.querySelector('[data-tab=early]').click()">
+  Рассчитать досрочное погашение
+</a>
 </div>
           <div class="info-card">
   <h3>Планирую ипотеку</h3>
@@ -163,7 +168,6 @@
    onclick="document.querySelector('[data-tab=mortgage]').click()">
   Рассчитать ипотеку
 </a>
-  </a>
 </div>
 
           <div class="info-card">
@@ -172,8 +176,13 @@
               Укажите сумму цели, сколько уже накоплено и сколько готовы откладывать.
               Сервис покажет примерный срок достижения цели.
             </p>
-           <a href="#calculators" class="btn secondary" 
-             onclick="sendGoal('scenario_savings_click'); document.querySelector('[data-tab=savings]').click()">Рассчитать накопления</a>
+           <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="savings"
+   onclick="document.querySelector('[data-tab=savings]').click()">
+  Рассчитать накопления
+</a>
 
           </div>
           <div class="info-card">
@@ -182,10 +191,13 @@
     Оцените, сколько денег получится накопить на вкладе с учётом ставки,
     срока, начальной суммы, пополнений и капитализации процентов.
   </p>
-  <a href="#calculators" class="btn secondary"
-     onclick="sendGoal('scenario_deposit_click'); document.querySelector('[data-tab=deposit]').click()">
-    Рассчитать вклад
-  </a>
+<a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="deposit"
+   onclick="document.querySelector('[data-tab=deposit]').click()">
+  Рассчитать вклад
+</a>
 </div>
           
            <div class="info-card">
@@ -209,8 +221,13 @@
               Введите доход и расходы, чтобы увидеть свободный остаток,
               долю расходов и потенциал для накоплений.
             </p>
-            <a href="#calculators" class="btn secondary" 
-              onclick="sendGoal('scenario_budget_click'); document.querySelector('[data-tab=budget]').click()">Проверить бюджет</a>
+            <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="budget"
+   onclick="document.querySelector('[data-tab=budget]').click()">
+  Проверить бюджет
+</a>
 
           </div>
 
@@ -220,8 +237,13 @@
               Рассчитайте, какой запас денег нужен на 3–6 месяцев расходов,
               сколько ещё нужно накопить и за какой срок это возможно.
             </p>
-            <a href="#calculators" class="btn secondary"
-            onclick="sendGoal('scenario_cushion_click'); document.querySelector('[data-tab=cushion]').click()">Рассчитать подушку</a>
+            <a href="#calculators"
+   class="btn secondary"
+   data-goal="choose_scenario"
+   data-scenario="cushion"
+   onclick="document.querySelector('[data-tab=cushion]').click()">
+  Рассчитать подушку
+</a>
 
           </div>
         </div>
@@ -404,7 +426,6 @@
    onclick="document.querySelector('[data-tab=early]').click()">
   Рассчитать досрочное погашение
 </a>
-  </button>
 </div>
             </div>
           </div>
@@ -487,7 +508,6 @@
    onclick="document.querySelector('[data-tab=budget]').click()">
   Проверить бюджет
 </a>
-</button>
 </div>
     </div>
   </div>

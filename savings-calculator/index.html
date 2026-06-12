@@ -1,1 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Калькулятор накоплений онлайн — рассчитать срок достижения цели | CalcPilot</title>
+
+  <meta
+    name="description"
+    content="Калькулятор накоплений CalcPilot помогает рассчитать, сколько времени потребуется для достижения финансовой цели при заданной сумме, текущих накоплениях и ежемесячных пополнениях."
+  />
+
+  <link rel="canonical" href="https://calcpilot.ru/savings-calculator/" />
+
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://mc.webvisor.org; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+  />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="120x120" href="/favicon-120x120.png?v=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href="../style.css?v=15" />
+</head>
+
+<body>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) { return; }
+      }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109235181', 'ym');
+
+    ym(109235181, 'init', {
+      ssr:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript>
+    <div>
+      <img src="https://mc.yandex.ru/watch/109235181" style="position:absolute; left:-9999px;" alt="" />
+    </div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="CalcPilot — на главную">
+        <span class="logo-icon">✦</span>
+        <span>CalcPilot</span>
+      </a>
+
+      <nav class="nav">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/deposit-calculator/">Вклад</a>
+        <a href="/#legal">Правовая информация</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="badge">CalcPilot v1.5</div>
+
+          <h1>Калькулятор накоплений на цель</h1>
+
+          <p>
+            Рассчитайте, сколько времени потребуется, чтобы накопить нужную сумму.
+            Укажите финансовую цель, уже накопленные деньги и ежемесячное пополнение.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/?calc=savings#calculators"
+               class="btn primary"
+               data-goal="seo_page_click"
+               data-calculator="savings">
+              Рассчитать накопления
+            </a>
+
+            <a href="/deposit-calculator/" class="btn secondary">
+              Калькулятор вклада
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Что можно узнать</h3>
+
+          <div class="mini-stats">
+            <div>
+              <strong>₽</strong>
+              <span>сколько осталось</span>
+            </div>
+            <div>
+              <strong>мес.</strong>
+              <span>срок до цели</span>
+            </div>
+            <div>
+              <strong>дата</strong>
+              <span>примерный финиш</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Как пользоваться калькулятором накоплений</h2>
+          <p>
+            Для расчёта достаточно указать сумму цели, текущие накопления и сумму,
+            которую вы готовы откладывать каждый месяц.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>1. Укажите сумму цели</h3>
+            <p>
+              Это сумма, которую вы хотите накопить: на отпуск, ремонт, обучение,
+              автомобиль, первый взнос или другую финансовую цель.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>2. Укажите текущие накопления</h3>
+            <p>
+              Если вы уже начали копить, введите сумму, которая уже отложена.
+              Это поможет точнее оценить оставшийся путь.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>3. Укажите ежемесячное пополнение</h3>
+            <p>
+              Введите сумму, которую планируете откладывать каждый месяц.
+              Калькулятор рассчитает примерный срок достижения цели.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Что показывает результат</h2>
+          <p>
+            Калькулятор помогает понять, насколько реалистична финансовая цель
+            при текущем темпе накоплений.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Сколько осталось накопить</h3>
+            <p>
+              Сервис вычитает уже накопленную сумму из цели и показывает,
+              какой остаток ещё нужно собрать.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Срок достижения цели</h3>
+            <p>
+              На основе ежемесячного пополнения калькулятор показывает,
+              сколько месяцев может потребоваться.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Примерная дата</h3>
+            <p>
+              CalcPilot показывает ориентировочную дату, когда цель может быть достигнута
+              при регулярных пополнениях.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 32px;">
+          <a href="/?calc=savings#calculators"
+             class="btn primary"
+             data-goal="seo_page_click"
+             data-calculator="savings">
+            Открыть калькулятор
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Как быстрее накопить на цель</h2>
+          <p>
+            Если срок получается слишком длинным, можно изменить один из параметров:
+            увеличить ежемесячное пополнение, снизить сумму цели или использовать
+            инструменты с процентным доходом.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Увеличить пополнение</h3>
+            <p>
+              Даже небольшое увеличение ежемесячного взноса может заметно сократить
+              срок достижения цели.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Разделить цель на этапы</h3>
+            <p>
+              Большую цель проще достигать, если разбить её на несколько промежуточных
+              этапов и отслеживать прогресс.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Сравнить с вкладом</h3>
+            <p>
+              Если деньги не нужны срочно, можно дополнительно оценить вклад
+              и посмотреть возможный процентный доход.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Частые вопросы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Калькулятор учитывает проценты?</h3>
+            <p>
+              Базовый расчёт накоплений показывает срок достижения цели без учёта
+              доходности. Для расчёта процентов можно использовать калькулятор вклада.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Что делать, если срок слишком большой?</h3>
+            <p>
+              Можно увеличить ежемесячное пополнение, пересмотреть расходы,
+              изменить срок цели или рассмотреть инструменты с доходностью.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Можно ли считать несколько целей?</h3>
+            <p>
+              Да. Можно отдельно рассчитать каждую цель и понять, какие из них
+              приоритетнее для бюджета.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Похожие калькуляторы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Калькулятор вклада</h3>
+            <p>Рассчитайте итоговую сумму и проценты по вкладу.</p>
+            <a href="/deposit-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Калькулятор бюджета</h3>
+            <p>Проверьте, сколько денег можно откладывать каждый месяц.</p>
+            <a href="/budget-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Калькулятор финансовой подушки</h3>
+            <p>Рассчитайте резерв на случай непредвиденных расходов.</p>
+            <a href="/emergency-fund-calculator/" class="btn secondary">Открыть</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="legal-text">
+          <h2>Важно</h2>
+          <p>
+            Все расчёты являются ориентировочными. Калькулятор накоплений помогает
+            получить предварительную оценку и не учитывает инфляцию, изменение доходов,
+            непредвиденные расходы и доходность финансовых инструментов.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 CalcPilot</span>
+      <div class="footer-links">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/#legal">Правовая информация</a>
+        <a href="mailto:geometry9889@gmail.com">geometry9889@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=15"></script>
+</body>
+</html>
 

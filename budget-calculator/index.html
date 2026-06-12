@@ -1,1 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Калькулятор личного бюджета онлайн — доходы, расходы и остаток | CalcPilot</title>
+
+  <meta
+    name="description"
+    content="Калькулятор личного бюджета CalcPilot помогает быстро оценить доходы, обязательные и переменные расходы, свободный остаток и потенциал для накоплений."
+  />
+
+  <link rel="canonical" href="https://calcpilot.ru/budget-calculator/" />
+
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://mc.webvisor.org; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+  />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="120x120" href="/favicon-120x120.png?v=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href="../style.css?v=15" />
+</head>
+
+<body>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) { return; }
+      }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109235181', 'ym');
+
+    ym(109235181, 'init', {
+      ssr:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript>
+    <div>
+      <img src="https://mc.yandex.ru/watch/109235181" style="position:absolute; left:-9999px;" alt="" />
+    </div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="CalcPilot — на главную">
+        <span class="logo-icon">✦</span>
+        <span>CalcPilot</span>
+      </a>
+
+      <nav class="nav">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/savings-calculator/">Накопления</a>
+        <a href="/#legal">Правовая информация</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="badge">CalcPilot v1.5</div>
+
+          <h1>Калькулятор личного бюджета</h1>
+
+          <p>
+            Рассчитайте свободный остаток после расходов, долю трат от дохода
+            и примерный потенциал для накоплений.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/?calc=budget#calculators"
+               class="btn primary"
+               data-goal="seo_page_click"
+               data-calculator="budget">
+              Рассчитать бюджет
+            </a>
+
+            <a href="/savings-calculator/" class="btn secondary">
+              Калькулятор накоплений
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Что можно узнать</h3>
+
+          <div class="mini-stats">
+            <div>
+              <strong>₽</strong>
+              <span>свободный остаток</span>
+            </div>
+            <div>
+              <strong>%</strong>
+              <span>доля расходов</span>
+            </div>
+            <div>
+              <strong>+</strong>
+              <span>потенциал накоплений</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Как пользоваться калькулятором бюджета</h2>
+          <p>
+            Для расчёта укажите ежемесячный доход, обязательные расходы
+            и переменные траты.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>1. Укажите доход</h3>
+            <p>
+              Введите общий доход за месяц: зарплату, подработку, доход от бизнеса
+              или другие регулярные поступления.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>2. Укажите обязательные расходы</h3>
+            <p>
+              Это платежи, которые сложно быстро отменить: жильё, кредиты,
+              коммунальные услуги, связь, транспорт, лечение.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>3. Укажите переменные расходы</h3>
+            <p>
+              Это покупки, развлечения, кафе, доставка, бытовые траты и другие
+              расходы, которые могут меняться от месяца к месяцу.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Что показывает результат</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Свободный остаток</h3>
+            <p>
+              Это сумма, которая остаётся после обязательных и переменных расходов.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Доля расходов</h3>
+            <p>
+              Калькулятор показывает, какую часть дохода занимают расходы.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Потенциал накоплений</h3>
+            <p>
+              Если после расходов остаются деньги, их можно направить на подушку,
+              цели, вклад или другие задачи.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 32px;">
+          <a href="/?calc=budget#calculators"
+             class="btn primary"
+             data-goal="seo_page_click"
+             data-calculator="budget">
+            Открыть калькулятор
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Зачем считать личный бюджет</h2>
+          <p>
+            Бюджет помогает понять, куда уходят деньги, сколько можно откладывать
+            и насколько комфортны кредиты, ипотека или крупные покупки.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Контроль расходов</h3>
+            <p>
+              Когда расходы разделены на категории, проще увидеть, какие траты
+              можно сократить без сильного дискомфорта.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Планирование целей</h3>
+            <p>
+              Свободный остаток помогает понять, сколько реально откладывать
+              на цели каждый месяц.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Оценка кредитной нагрузки</h3>
+            <p>
+              Перед кредитом или ипотекой полезно проверить, останется ли запас
+              после ежемесячного платежа.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Частые вопросы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Какие расходы считать обязательными?</h3>
+            <p>
+              Жильё, еду, транспорт, связь, кредиты, коммунальные услуги, лекарства
+              и другие платежи, без которых сложно обойтись.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Сколько дохода стоит откладывать?</h3>
+            <p>
+              Универсального правила нет, но часто ориентируются хотя бы на 10–20%
+              дохода, если это возможно.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Что делать, если расходы больше доходов?</h3>
+            <p>
+              Важно найти самые крупные статьи расходов, временно сократить необязательные
+              траты и подумать о способах увеличения дохода.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Похожие калькуляторы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Калькулятор финансовой подушки</h3>
+            <p>Рассчитайте резерв на 3–6 месяцев расходов.</p>
+            <a href="/emergency-fund-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Калькулятор накоплений</h3>
+            <p>Узнайте, сколько времени нужно для достижения цели.</p>
+            <a href="/savings-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Ипотечный калькулятор</h3>
+            <p>Оцените платёж по ипотеке и нагрузку на доход.</p>
+            <a href="/mortgage-calculator/" class="btn secondary">Открыть</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="legal-text">
+          <h2>Важно</h2>
+          <p>
+            Калькулятор бюджета показывает предварительную оценку и не учитывает
+            нерегулярные доходы, сезонные расходы, долги, налоги и индивидуальные обстоятельства.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 CalcPilot</span>
+      <div class="footer-links">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/#legal">Правовая информация</a>
+        <a href="mailto:geometry9889@gmail.com">geometry9889@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=15"></script>
+</body>
+</html>
 

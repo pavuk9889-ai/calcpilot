@@ -44,6 +44,13 @@ function initGoalTracking() {
     });
   });
 }
+function activateCalculator(tabName) {
+  const targetTab = document.querySelector(`[data-tab="${tabName}"]`);
+
+  if (targetTab) {
+    targetTab.click();
+  }
+}
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initGoalTracking);

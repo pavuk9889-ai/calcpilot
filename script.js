@@ -744,6 +744,7 @@ window.askAssistant = askAssistant;
 window.acceptCookies = acceptCookies;
 window.sendGoal = sendGoal;
 window.openCalculatorFromUrl = openCalculatorFromUrl;
+window.activateCalculator = activateCalculator;
 
 /* Стартовые расчёты без отправки целей в Метрику */
 if (document.getElementById("calculators")) {

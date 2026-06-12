@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>CalcPilot — умные калькуляторы для жизни</title>
+  <title>CalcPilot — простые калькуляторы для денег и жизни</title>
 
 <meta
   name="description"
-  content="CalcPilot — онлайн-сервис с финансовыми калькуляторами: кредит, досрочное погашение, ипотека, накопления, вклад, пенсия, личный бюджет, финансовая подушка и ИИ-помощник."
+  content="CalcPilot — простые онлайн-калькуляторы для финансовых решений: кредит, ипотека, вклад, досрочное погашение, накопления, бюджет, пенсия и финансовая подушка."
 />
 
 <link rel="canonical" href="https://calcpilot.ru/" />
@@ -30,7 +30,7 @@
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="shortcut icon" href="/favicon.ico" />
 
-<link rel="stylesheet" href="style.css?v=13" />
+<link rel="stylesheet" href="style.css?v=15" />
 </head>
 <body>
   <!-- Yandex.Metrika counter -->
@@ -47,81 +47,164 @@
 <noscript><div><img src="https://mc.yandex.ru/watch/109235181" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 
-  <header class="header">
-    <div class="container header-inner">
-     <a href="#top" class="logo" aria-label="CalcPilot — в начало страницы">
-  <span class="logo-icon">✦</span>
-  <span>CalcPilot</span>
-</a>
+<header class="site-header">
+  <div class="container header-layout">
+    <a href="#top" class="brand" aria-label="CalcPilot — в начало страницы">
+      <span class="brand-mark">✦</span>
+      <span class="brand-text">CalcPilot</span>
+    </a>
 
-     <nav class="nav">
-  <a href="#calculators">Калькуляторы</a>
-  <a href="#scenarios">Сценарии</a>
-  <a href="#assistant">ИИ-помощник</a>
-  <a href="#for-whom">Для кого</a>
-  <a href="#monetization">Возможности</a>
-  <a href="#legal">Правовая информация</a>
-</nav>
-    </div>
-  </header>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a href="#calculators">Калькуляторы</a>
+      <a href="#popular">Популярное</a>
+      <a href="#why">Почему мы</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a href="#calculators" class="header-cta" data-goal="start_calculation">
+      Начать расчёт
+    </a>
+  </div>
+</header>
 
   <main>
 
-    <section id="top" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-content">
-          <div class="badge">MVP-версия v1.4</div>
+  <section id="top" class="hero-v15">
+  <div class="container hero-v15-layout">
+    <div class="hero-v15-content">
+      <div class="version-badge">CalcPilot v1.5</div>
 
-          <h1>Умные калькуляторы для повседневных финансовых решений</h1>
+      <h1>Простые калькуляторы для денег и жизни</h1>
 
-          <p>
-            CalcPilot помогает быстро оценить кредит, досрочное погашение,
-ипотеку, накопления, вклад, личный бюджет, финансовую подушку
-и пенсионный план, чтобы принимать решения спокойнее, понятнее
-и без сложных таблиц.
-          </p>
+      <p class="hero-lead">
+        Рассчитайте кредит, ипотеку, вклад, бюджет, накопления и финансовую подушку
+        за пару минут — без сложных таблиц и лишних терминов.
+      </p>
 
-          <div class="hero-actions">
-            <a href="#calculators" class="btn primary" data-goal="start_calculation">
-  Начать расчёт
-</a>
-            <a href="#assistant" class="btn secondary" data-goal="ai_assistant_click">
-  Спросить помощника
-</a>
-          </div>
+      <div class="hero-actions">
+        <a href="#calculators" class="btn btn-primary" data-goal="start_calculation">
+          Выбрать калькулятор
+        </a>
+
+        <a href="/credit-calculator/" class="btn btn-secondary" data-goal="seo_page_click" data-calculator="credit">
+          Кредитный калькулятор
+        </a>
+      </div>
+    </div>
+
+    <aside class="hero-summary-card" aria-label="Что можно посчитать">
+      <h2>Что уже есть</h2>
+
+      <div class="summary-list">
+        <div>
+          <strong>8</strong>
+          <span>калькуляторов</span>
         </div>
 
-        <div class="hero-card">
-          <h3>Что уже умеет CalcPilot</h3>
-          <p class="muted">
-            Это первая публичная версия сервиса. Она уже работает в браузере и на телефоне.
-          </p>
+        <div>
+          <strong>1 мин</strong>
+          <span>на быстрый расчёт</span>
+        </div>
 
-          <div class="mini-stats">
-            <div>
-              <strong>8</strong>
-              <span>калькуляторов</span>
-            </div>
-            <div>
-              <strong>ИИ</strong>
-              <span>демо-помощник</span>
-            </div>
-            <div>
-              <strong>24/7</strong>
-              <span>доступ онлайн</span>
-            </div>
-          </div>
+        <div>
+          <strong>0 ₽</strong>
+          <span>без регистрации</span>
         </div>
       </div>
-    </section>
-        <section id="scenarios" class="section">
+    </aside>
+  </div>
+</section>
+    <section class="quick-picker-section" aria-label="Быстрый выбор калькулятора">
+  <div class="container">
+    <div class="quick-picker">
+      <div class="quick-picker-head">
+        <h2>Что хотите посчитать?</h2>
+        <p>Выберите нужный калькулятор — расчёт откроется ниже на этой странице.</p>
+      </div>
+
+      <div class="quick-picker-grid">
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="credit"
+           onclick="activateCalculator('credit')">
+          <span class="quick-icon">💳</span>
+          <span>Кредит</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="mortgage"
+           onclick="activateCalculator('mortgage')">
+          <span class="quick-icon">🏠</span>
+          <span>Ипотека</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="deposit"
+           onclick="activateCalculator('deposit')">
+          <span class="quick-icon">🏦</span>
+          <span>Вклад</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="budget"
+           onclick="activateCalculator('budget')">
+          <span class="quick-icon">📊</span>
+          <span>Бюджет</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="savings"
+           onclick="activateCalculator('savings')">
+          <span class="quick-icon">🎯</span>
+          <span>Накопления</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="cushion"
+           onclick="activateCalculator('cushion')">
+          <span class="quick-icon">🛟</span>
+          <span>Подушка</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="early"
+           onclick="activateCalculator('early')">
+          <span class="quick-icon">⚡</span>
+          <span>Досрочное погашение</span>
+        </a>
+
+        <a href="#calculators"
+           class="quick-calc-btn"
+           data-goal="quick_calc_click"
+           data-calculator="pension"
+           onclick="activateCalculator('pension')">
+          <span class="quick-icon">🌱</span>
+          <span>Пенсия</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+        <section id="popular" class="section section-v15">
       <div class="container">
         <div class="section-head">
-          <h2>Популярные сценарии</h2>
+          <h2>Популярные калькуляторы</h2>
           <p>
-            Выберите ситуацию, которая ближе всего к вашей задаче. CalcPilot поможет
-            быстро получить ориентировочный расчёт и понять, на какие цифры обратить внимание.
-          </p>
+  Самые частые расчёты собраны в одном месте. Выберите нужный калькулятор и получите предварительный результат.
+</p>
         </div>
 
         <div class="cards">
@@ -305,12 +388,10 @@
     <section id="calculators" class="section">
       <div class="container">
         <div class="section-head">
-          <h2>Калькуляторы</h2>
+          <h2>Все финансовые калькуляторы</h2>
           <p>
-            Первые инструменты CalcPilot: кредитный калькулятор, досрочное погашение,
-ипотека, расчёт накоплений, калькулятор вклада, пенсионный план,
-личный бюджет и финансовая подушка.
-          </p>
+  Выберите калькулятор, введите данные и получите предварительный результат с короткой подсказкой.
+</p>
         </div>
 
 <div class="tabs">

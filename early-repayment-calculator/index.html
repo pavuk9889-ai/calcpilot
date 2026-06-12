@@ -1,1 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Калькулятор досрочного погашения кредита онлайн — сравнить выгоду | CalcPilot</title>
+
+  <meta
+    name="description"
+    content="Калькулятор досрочного погашения CalcPilot помогает сравнить варианты: уменьшить ежемесячный платёж или сократить срок кредита, а также оценить примерную экономию на процентах."
+  />
+
+  <link rel="canonical" href="https://calcpilot.ru/early-repayment-calculator/" />
+
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://mc.yandex.ru https://mc.yandex.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com https://mc.webvisor.org; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+  />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="120x120" href="/favicon-120x120.png?v=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href="../style.css?v=15" />
+</head>
+
+<body>
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) { return; }
+      }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109235181', 'ym');
+
+    ym(109235181, 'init', {
+      ssr:true,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce:true,
+      trackLinks:true
+    });
+  </script>
+  <noscript>
+    <div>
+      <img src="https://mc.yandex.ru/watch/109235181" style="position:absolute; left:-9999px;" alt="" />
+    </div>
+  </noscript>
+  <!-- /Yandex.Metrika counter -->
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="/" class="logo" aria-label="CalcPilot — на главную">
+        <span class="logo-icon">✦</span>
+        <span>CalcPilot</span>
+      </a>
+
+      <nav class="nav">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/credit-calculator/">Кредит</a>
+        <a href="/#legal">Правовая информация</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="badge">CalcPilot v1.5</div>
+
+          <h1>Калькулятор досрочного погашения кредита</h1>
+
+          <p>
+            Сравните два варианта досрочного погашения: уменьшить ежемесячный платёж
+            или сократить срок кредита. Калькулятор помогает предварительно оценить
+            возможную экономию на процентах.
+          </p>
+
+          <div class="hero-actions">
+            <a href="/?calc=early#calculators"
+               class="btn primary"
+               data-goal="seo_page_click"
+               data-calculator="early">
+              Рассчитать досрочное погашение
+            </a>
+
+            <a href="/credit-calculator/" class="btn secondary">
+              Кредитный калькулятор
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <h3>Что можно сравнить</h3>
+
+          <div class="mini-stats">
+            <div>
+              <strong>₽</strong>
+              <span>новый платёж</span>
+            </div>
+            <div>
+              <strong>мес.</strong>
+              <span>новый срок</span>
+            </div>
+            <div>
+              <strong>%</strong>
+              <span>экономия</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Как пользоваться калькулятором досрочного погашения</h2>
+          <p>
+            Для расчёта укажите остаток долга, процентную ставку, оставшийся срок
+            кредита и сумму, которую планируете внести досрочно.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>1. Укажите остаток долга</h3>
+            <p>
+              Это сумма, которую ещё осталось выплатить банку по кредиту.
+              Её можно посмотреть в графике платежей или личном кабинете банка.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>2. Укажите ставку и срок</h3>
+            <p>
+              Введите текущую годовую ставку и количество месяцев, оставшихся
+              до полного погашения кредита.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>3. Введите сумму досрочного платежа</h3>
+            <p>
+              Это сумма, которую вы хотите внести сверх обычного ежемесячного платежа.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Что показывает расчёт</h2>
+          <p>
+            Калькулятор сравнивает два популярных сценария досрочного погашения.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Уменьшение платежа</h3>
+            <p>
+              При этом варианте срок кредита обычно сохраняется, но ежемесячная
+              нагрузка на бюджет становится ниже.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Сокращение срока</h3>
+            <p>
+              При этом варианте ежемесячный платёж может остаться примерно прежним,
+              но кредит закрывается быстрее.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Экономия на процентах</h3>
+            <p>
+              Чем меньше срок и остаток долга, тем меньше процентов может быть
+              начислено за оставшийся период.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 32px;">
+          <a href="/?calc=early#calculators"
+             class="btn primary"
+             data-goal="seo_page_click"
+             data-calculator="early">
+            Открыть калькулятор
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Что выбрать: уменьшить срок или платёж?</h2>
+          <p>
+            Универсального ответа нет. Если главная цель — снизить ежемесячную нагрузку,
+            часто выбирают уменьшение платежа. Если цель — быстрее закрыть кредит и
+            сократить переплату, чаще рассматривают сокращение срока.
+          </p>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Когда важен меньший платёж</h3>
+            <p>
+              Этот вариант может быть удобен, если нужно снизить нагрузку на семейный
+              бюджет и освободить деньги на другие обязательные расходы.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Когда важна экономия</h3>
+            <p>
+              Сокращение срока часто помогает сильнее уменьшить переплату по процентам,
+              но ежемесячная нагрузка может остаться выше.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Что проверить перед внесением</h3>
+            <p>
+              Уточните в банке порядок досрочного погашения, дату списания, необходимость
+              заявления и способ пересчёта графика платежей.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Частые вопросы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Калькулятор показывает точную экономию?</h3>
+            <p>
+              Нет. Расчёт является ориентировочным. Реальный график платежей зависит
+              от условий банка, даты платежа и правил пересчёта.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Можно ли погасить кредит полностью?</h3>
+            <p>
+              Да, если сумма досрочного платежа равна или больше остатка долга.
+              Но точную сумму для полного закрытия нужно уточнять в банке.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Что выгоднее при досрочном погашении?</h3>
+            <p>
+              Часто сокращение срока даёт большую экономию на процентах, а уменьшение
+              платежа помогает снизить ежемесячную нагрузку.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Похожие калькуляторы</h2>
+        </div>
+
+        <div class="cards">
+          <div class="info-card">
+            <h3>Кредитный калькулятор</h3>
+            <p>Рассчитайте платёж, общую выплату и переплату по кредиту.</p>
+            <a href="/credit-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Калькулятор бюджета</h3>
+            <p>Проверьте, комфортен ли платёж для вашего ежемесячного бюджета.</p>
+            <a href="/budget-calculator/" class="btn secondary">Открыть</a>
+          </div>
+
+          <div class="info-card">
+            <h3>Калькулятор финансовой подушки</h3>
+            <p>Оцените, какой резерв стоит иметь перед активным погашением кредита.</p>
+            <a href="/emergency-fund-calculator/" class="btn secondary">Открыть</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assistant-section">
+      <div class="container">
+        <div class="legal-text">
+          <h2>Важно</h2>
+          <p>
+            CalcPilot не является банком, кредитором, брокером или финансовым консультантом.
+            Все расчёты являются предварительными и предназначены только для самостоятельной оценки.
+          </p>
+          <p>
+            Перед досрочным погашением кредита обязательно проверьте условия договора
+            и официальный график платежей в банке.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 CalcPilot</span>
+      <div class="footer-links">
+        <a href="/">Главная</a>
+        <a href="/#calculators">Калькуляторы</a>
+        <a href="/#legal">Правовая информация</a>
+        <a href="mailto:geometry9889@gmail.com">geometry9889@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js?v=15"></script>
+</body>
+</html>
 
